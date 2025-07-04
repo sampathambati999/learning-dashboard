@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GROUP BY & ORDER BY</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">GROUP BY & ORDER BY</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>GROUP BY</strong> and <strong>ORDER BY</strong> are clauses used to organize and sort the result set of an SQL query. <code>GROUP BY</code> is typically used with aggregate functions like COUNT or SUM, while <code>ORDER BY</code> controls the sorting of results.
+    </p>
+
+    <div class="grid gap-6 mt-6">
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📊 GROUP BY Basics</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department;
+        </pre>
+        <p class="text-sm mt-2">Groups employees by department and counts how many are in each.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧮 GROUP BY with SUM</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT department, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department;
+        </pre>
+        <p class="text-sm mt-2">Shows total salary expense for each department.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔡 ORDER BY Basics</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT full_name, salary
+FROM employees
+ORDER BY salary DESC;
+        </pre>
+        <p class="text-sm mt-2">Sorts employees from highest to lowest salary.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🎯 Combining GROUP BY and ORDER BY</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+ORDER BY employee_count DESC;
+        </pre>
+        <p class="text-sm mt-2">Ranks departments by number of employees.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>GROUP BY is used with aggregate functions (COUNT, AVG, SUM, MAX, MIN).</li>
+          <li>ORDER BY can sort results by any column or alias in ASC (default) or DESC order.</li>
+          <li>You can use both together in the same query.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

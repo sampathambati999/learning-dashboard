@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Modeling in SQL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">Data Modeling in SQL</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>Data modeling</strong> is the process of creating a conceptual structure that defines the data elements and relationships for a business or application. It helps translate real-world scenarios into database structures.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🏗️ Types of Data Models</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>Conceptual Model:</strong> High-level view of business entities and relationships</li>
+          <li><strong>Logical Model:</strong> Normalized model with primary/foreign keys, entity attributes</li>
+          <li><strong>Physical Model:</strong> Implementation-ready schema with tables, columns, data types</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔗 Entities and Relationships</h2>
+        <p class="text-sm mb-2">In data modeling, entities represent tables, and relationships are implemented through foreign keys.</p>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>One-to-One:</strong> Each entity A maps to one entity B</li>
+          <li><strong>One-to-Many:</strong> A record in A maps to many in B</li>
+          <li><strong>Many-to-Many:</strong> Use junction tables with foreign keys</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📄 Example: Online Courses</h2>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>Students</strong>: student_id, name, email</li>
+          <li><strong>Courses</strong>: course_id, title, description</li>
+          <li><strong>Enrollments</strong>: student_id, course_id, enrollment_date</li>
+        </ul>
+        <p class="text-sm mt-2">Here, <code>Enrollments</code> is a many-to-many relationship between students and courses.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Benefits of Good Modeling</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Reduces data redundancy and anomalies</li>
+          <li>Makes future updates and scaling easier</li>
+          <li>Improves query efficiency and performance</li>
+          <li>Aligns technical design with business needs</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Tips</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Normalize to 3NF or higher unless performance dictates otherwise</li>
+          <li>Use clear naming conventions and consistent key structures</li>
+          <li>Document your model with ER diagrams and notes</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aggregate Functions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Aggregate Functions</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>Aggregate functions</strong> perform a calculation on a set of values and return a single value. These are commonly used with the <code>GROUP BY</code> clause to analyze data.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔢 COUNT()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT COUNT(*) AS total_employees
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Counts the number of rows in the table.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">💲 SUM()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT SUM(salary) AS total_payroll
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Calculates the total sum of a numeric column.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📈 AVG()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT AVG(salary) AS average_salary
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Finds the average value of a column.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⬆️ MAX()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT MAX(salary) AS highest_salary
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Returns the maximum value in the column.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⬇️ MIN()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT MIN(salary) AS lowest_salary
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Returns the minimum value in the column.</p>
+      </div>
+
+      <div class="border-l-4 border-gray-700 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>These functions ignore NULL values unless specified otherwise.</li>
+          <li>Often used in combination with <code>GROUP BY</code> for grouped stats.</li>
+          <li>You can alias results using <code>AS</code> to label the output columns.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informatica Sessions and Worklets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Informatica Sessions and Worklets</h1>
+    <p class="text-gray-600">Learn how sessions and worklets execute and organize ETL logic in Informatica PowerCenter</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📋 What is a Session?</h2>
+      <p class="text-sm">A session is a task that executes a mapping. It defines how data is read from source, processed, and written to targets using session-level configuration.</p>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">⚙️ Session Configuration</h2>
+      <p class="text-sm">Sessions can be configured with the following settings:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li>Connections (source/target)</li>
+        <li>Error handling and logging</li>
+        <li>Pre- and post-session commands</li>
+        <li>Parameter file and variable assignments</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🔀 What is a Worklet?</h2>
+      <p class="text-sm">A worklet is a reusable group of tasks (sessions, emails, commands, etc.) that can be reused in multiple workflows to promote modular design.</p>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">📦 Types of Worklets</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Reusable Worklet:</strong> Can be used across multiple workflows.</li>
+        <li><strong>Non-reusable Worklet:</strong> Created within a workflow and used only there.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-pink-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 Execution Order</h2>
+      <p class="text-sm">Workflow Manager defines the order of execution using links and conditions (success, failure, skipped, etc.) between sessions and worklets.</p>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🧰 Pre/Post-Session Commands</h2>
+      <p class="text-sm">Shell commands or batch scripts can be configured to run before or after the session to handle file operations or notifications.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">Pre-session command example:
+mkdir -p /archive/input/
+
+Post-session command example:
+mv /input/file.csv /archive/input/</pre>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">📈 Monitoring Sessions</h2>
+      <p class="text-sm">Use Workflow Monitor to track session progress, view logs, and identify row-level read/write statistics or transformation errors.</p>
+    </div>
+  </section>
+</body>
+</html>

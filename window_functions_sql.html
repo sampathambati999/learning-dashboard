@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Window & Ranking Functions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">Window & Ranking Functions</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>Window functions</strong> allow you to perform calculations across a set of rows that are related to the current row. They're essential for ranking, comparisons, cumulative stats, and more.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">#️⃣ ROW_NUMBER()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, department,
+       ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS row_num
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Gives each row a unique number within a partition. No ties.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🥇 RANK()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, salary,
+       RANK() OVER (ORDER BY salary DESC) AS rank
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Assigns ranks with gaps. Tied rows get the same rank, next one is skipped.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🏅 DENSE_RANK()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, salary,
+       DENSE_RANK() OVER (ORDER BY salary DESC) AS dense_rank
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Ranks without gaps. If two people tie at 1, the next gets 2 (not 3).</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📊 NTILE(n)</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, salary,
+       NTILE(4) OVER (ORDER BY salary DESC) AS quartile
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Divides rows into n buckets (e.g. quartiles, deciles).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⬅️ LAG() & ➡️ LEAD()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, salary,
+       LAG(salary) OVER (ORDER BY salary) AS prev_salary,
+       LEAD(salary) OVER (ORDER BY salary) AS next_salary
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Access previous and next row values without a self join.</p>
+      </div>
+
+      <div class="border-l-4 border-gray-700 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 FIRST_VALUE() & LAST_VALUE()</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, salary,
+       FIRST_VALUE(salary) OVER (PARTITION BY department ORDER BY salary DESC) AS top_salary,
+       LAST_VALUE(salary) OVER (PARTITION BY department ORDER BY salary DESC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS lowest_salary
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Gets the first or last value in a partitioned, ordered set.</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

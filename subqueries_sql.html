@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subqueries</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Subqueries</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      A <strong>subquery</strong> is a query nested inside another SQL query. It can return single or multiple values and is often used in WHERE, FROM, or SELECT clauses to perform complex filtering or aggregation.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔍 Subquery in WHERE Clause</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name
+FROM employees
+WHERE department_id = (
+  SELECT id
+  FROM departments
+  WHERE department_name = 'IT'
+);
+        </pre>
+        <p class="text-sm mt-2">Find employees who belong to the IT department using a subquery in WHERE.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📦 Subquery in FROM Clause</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT avg_salary
+FROM (
+  SELECT department_id, AVG(salary) AS avg_salary
+  FROM employees
+  GROUP BY department_id
+) AS dept_avg
+WHERE avg_salary > 60000;
+        </pre>
+        <p class="text-sm mt-2">Subqueries in FROM act as temporary tables (derived tables).</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🎯 Subquery in SELECT Clause</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name,
+  (SELECT COUNT(*) FROM orders WHERE orders.customer_id = customers.id) AS order_count
+FROM customers;
+        </pre>
+        <p class="text-sm mt-2">Returns each customer's name and their number of orders using a SELECT subquery.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Notes on Subqueries</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Subqueries should return a single value when used in a scalar context (e.g., WHERE =).</li>
+          <li>Use aliases when subqueries are in FROM clause.</li>
+          <li>Consider performance: complex subqueries can slow down queries.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

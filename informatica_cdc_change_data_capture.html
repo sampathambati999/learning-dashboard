@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informatica Change Data Capture (CDC)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Change Data Capture (CDC) in Informatica</h1>
+    <p class="text-gray-600">Learn techniques for capturing inserts, updates, and deletes using CDC strategies in Informatica PowerCenter</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🔄 What is CDC?</h2>
+      <p class="text-sm">Change Data Capture (CDC) is the process of identifying and processing only the data that has changed (new, updated, or deleted) since the last ETL run.</p>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">📌 Common CDC Approaches</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Timestamp-based:</strong> Filter data where last_updated &gt; last successful run</li>
+        <li><strong>Flag-based:</strong> Use flags like I (Insert), U (Update), D (Delete)</li>
+        <li><strong>Versioning:</strong> Use version numbers or surrogate keys to detect change</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">📁 Timestamp-based CDC Example</h2>
+      <p class="text-sm">Assuming a column <code>LAST_MODIFIED_DATE</code> exists:</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT *
+  FROM source_table
+ WHERE LAST_MODIFIED_DATE &gt; TO_DATE('$$LastRunDate', 'YYYY-MM-DD HH24:MI:SS')</pre>
+      <p class="text-sm">Update $$LastRunDate using mapping variable logic after successful load.</p>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🔖 Flag-based CDC Example</h2>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT *
+  FROM staging_table
+ WHERE CHANGE_FLAG IN ('I', 'U')</pre>
+      <p class="text-sm">Use <code>Update Strategy</code> in Informatica to handle logic based on CHANGE_FLAG.</p>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🧠 Using Update Strategy Transformation</h2>
+      <p class="text-sm">Route records to insert/update/delete using conditional logic:</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">IIF(CHANGE_FLAG = 'I', DD_INSERT,
+IIF(CHANGE_FLAG = 'U', DD_UPDATE,
+IIF(CHANGE_FLAG = 'D', DD_DELETE, DD_REJECT)))</pre>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">🧾 Best Practices</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li>Keep audit columns like <code>CREATED_DATE</code>, <code>UPDATED_DATE</code></li>
+        <li>Use persistent variables to track last load</li>
+        <li>Maintain a CDC control table for batch monitoring</li>
+        <li>Consider database-side triggers for real-time systems</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

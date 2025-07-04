@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimensional Modeling in SQL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">Dimensional Modeling in SQL</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>Dimensional Modeling</strong> is a design technique optimized for data warehousing and business intelligence. It focuses on making data easy to query and analyze, typically using star or snowflake schemas.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⭐ Star Schema</h2>
+        <p class="text-sm mb-2">A central fact table surrounded by dimension tables. Simple, fast for queries.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+FactSales
+- sale_id (PK)
+- product_id (FK)
+- customer_id (FK)
+- store_id (FK)
+- sale_date
+- revenue
+
+DimProduct
+- product_id (PK)
+- product_name
+- category
+
+DimCustomer
+- customer_id (PK)
+- customer_name
+- region
+
+DimStore
+- store_id (PK)
+- store_location
+        </pre>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">❄️ Snowflake Schema</h2>
+        <p class="text-sm">Extends the star schema by normalizing dimensions. More complex but saves space.</p>
+        <p class="text-sm mt-2">For example, <code>DimProduct</code> might have a separate <code>DimCategory</code> table.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📊 Fact vs Dimension</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>Fact Tables</strong>: Store measurable, quantitative data (e.g., revenue, quantity)</li>
+          <li><strong>Dimension Tables</strong>: Store descriptive attributes (e.g., product name, region)</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 Best Practices</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Use surrogate keys in fact and dimension tables</li>
+          <li>Maintain consistent grain in fact tables (e.g., daily sales)</li>
+          <li>Pre-aggregate data if performance is critical</li>
+          <li>Design for reporting — keep joins simple and intuitive</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

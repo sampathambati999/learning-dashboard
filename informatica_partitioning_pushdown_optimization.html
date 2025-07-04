@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partitioning & Pushdown Optimization in Informatica</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Partitioning & Pushdown Optimization</h1>
+    <p class="text-gray-600">Boost performance in Informatica using parallel processing and delegated SQL execution</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">🧱 What is Partitioning?</h2>
+      <p class="text-sm">Partitioning divides data into segments that are processed in parallel, increasing throughput and reducing session runtime.</p>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🔍 Types of Partitioning</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Database Partitioning:</strong> Uses database-native partitions (e.g., Oracle HASH/RANGE)</li>
+        <li><strong>Informatica Pipeline Partitioning:</strong> Defines partitions at source/target level or in transformations</li>
+        <li><strong>Fixed Partitioning:</strong> Manually sets the number of partitions</li>
+        <li><strong>Key Range Partitioning:</strong> Based on a range of values (e.g., date range, region ID)</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">⚙️ How to Enable Partitioning</h2>
+      <p class="text-sm">Go to <code>Mapping → Configure Session → Partitioning</code> tab and define number of partitions, method, and keys.</p>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">📉 What is Pushdown Optimization?</h2>
+      <p class="text-sm">Pushdown Optimization allows Informatica to translate transformations into SQL and push execution to the database.</p>
+    </div>
+
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🎯 Levels of Pushdown Optimization</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Source-level:</strong> Only push filters/joins at the source</li>
+        <li><strong>Full Pushdown:</strong> Most transformations are pushed to DB (if supported)</li>
+        <li><strong>Target-level:</strong> Execute DML directly in target DB</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-pink-500 pl-4">
+      <h2 class="text-xl font-semibold">🛠️ Configuring Pushdown</h2>
+      <p class="text-sm">In session properties → <strong>Pushdown Optimization</strong> tab → select mode and connections for source/target databases.</p>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">✅ Best Practices</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li>Use key-based partitioning on large datasets for joins/aggregates</li>
+        <li>Analyze query plans to confirm actual SQL pushdown</li>
+        <li>Avoid pushing transformations unsupported by the DB (e.g., Update Strategy)</li>
+        <li>Benchmark performance before and after applying techniques</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

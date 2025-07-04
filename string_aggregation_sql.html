@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>String Aggregation & NULL Handling</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">String Aggregation & NULL Handling</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      This section covers powerful SQL functions used for string aggregation and handling NULL values in queries. Functions like <code>LISTAGG</code>, <code>STRING_AGG</code>, <code>COALESCE</code>, and <code>IFNULL</code> allow for more flexible, human-readable reporting and data transformation.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧵 LISTAGG (Oracle, Snowflake)</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT department,
+       LISTAGG(name, ', ') WITHIN GROUP (ORDER BY name) AS employee_names
+FROM employees
+GROUP BY department;
+        </pre>
+        <p class="text-sm mt-2">Concatenates string values from multiple rows into a single string per group.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔗 STRING_AGG (PostgreSQL, SQL Server, BigQuery)</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT department,
+       STRING_AGG(name, ', ' ORDER BY name) AS employee_names
+FROM employees
+GROUP BY department;
+        </pre>
+        <p class="text-sm mt-2">An alternative to LISTAGG available in many platforms. Supports ordering within aggregation.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧩 COALESCE</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, COALESCE(phone, 'Not Provided') AS contact
+FROM customers;
+        </pre>
+        <p class="text-sm mt-2">Returns the first non-NULL value from the list of expressions.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🛠️ IFNULL / ISNULL</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- MySQL:
+SELECT name, IFNULL(phone, 'N/A') AS contact
+FROM customers;
+
+-- SQL Server:
+SELECT name, ISNULL(phone, 'N/A') AS contact
+FROM customers;
+        </pre>
+        <p class="text-sm mt-2">Replaces NULL values with a fallback. Equivalent to COALESCE but limited to two arguments.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Notes & Best Practices</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Use <code>LISTAGG</code> or <code>STRING_AGG</code> for grouped lists in reports and dashboards.</li>
+          <li><code>COALESCE</code> supports multiple fallback options; use it when chaining default values.</li>
+          <li><code>IFNULL</code> and <code>ISNULL</code> are simpler but database-specific.</li>
+          <li>Always test string length limits and consider overflow handling in LISTAGG.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

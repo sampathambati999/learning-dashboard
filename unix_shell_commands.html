@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unix Shell Commands</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Unix Shell Commands</h1>
+    <p class="text-gray-600">Essential shell commands for navigating and managing a Unix/Linux environment.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📁 File and Directory Management</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>ls</code> – List directory contents</li>
+        <li><code>cd</code> – Change directory</li>
+        <li><code>pwd</code> – Print working directory</li>
+        <li><code>mkdir</code> – Create a new directory</li>
+        <li><code>rm</code> – Remove files or directories</li>
+        <li><code>cp</code> – Copy files and directories</li>
+        <li><code>mv</code> – Move or rename files</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">📄 Viewing and Editing Files</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>cat</code> – Concatenate and display file contents</li>
+        <li><code>more</code> / <code>less</code> – View files page by page</li>
+        <li><code>head</code> – Show the first lines of a file</li>
+        <li><code>tail</code> – Show the last lines of a file</li>
+        <li><code>nano</code>, <code>vi</code> – Text editors</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🔎 Searching and Finding</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>grep</code> – Search for text patterns in files</li>
+        <li><code>find</code> – Locate files and directories</li>
+        <li><code>locate</code> – Quickly search for file paths</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">📦 File Compression and Archiving</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>tar</code> – Archive files</li>
+        <li><code>gzip</code>, <code>gunzip</code> – Compress and decompress files</li>
+        <li><code>zip</code>, <code>unzip</code> – Zip archive tools</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🛠️ System Information</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>whoami</code> – Display current user</li>
+        <li><code>uname -a</code> – System information</li>
+        <li><code>df -h</code> – Disk space usage</li>
+        <li><code>free -m</code> – Memory usage</li>
+        <li><code>top</code>, <code>htop</code> – Real-time process monitoring</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">🔐 Permissions and Ownership</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>chmod</code> – Change file permissions</li>
+        <li><code>chown</code> – Change file owner</li>
+        <li><code>umask</code> – Default permissions mask</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

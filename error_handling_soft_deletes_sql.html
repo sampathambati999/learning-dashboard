@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Handling & Soft Deletes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">Error Handling & Soft Deletes in SQL</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      Proper error handling and soft delete strategies are important for maintaining reliability and traceability in your database systems.
+    </p>
+
+    <div class="grid gap-6">
+
+      <!-- Error Handling Section -->
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🚨 Error Handling in SQL</h2>
+        <p class="text-sm mb-2">Use error handling to gracefully manage runtime exceptions in stored procedures and scripts.</p>
+
+        <h3 class="font-semibold mt-2">MySQL</h3>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+BEGIN
+  ROLLBACK;
+  INSERT INTO error_log(message, error_time) VALUES ('Failure', NOW());
+END;
+        </pre>
+
+        <h3 class="font-semibold mt-4">SQL Server</h3>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+BEGIN TRY
+  -- your SQL code
+END TRY
+BEGIN CATCH
+  ROLLBACK;
+  PRINT ERROR_MESSAGE();
+END CATCH;
+        </pre>
+      </div>
+
+      <!-- Soft Deletes Section -->
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🗃️ Soft Deletes</h2>
+        <p class="text-sm mb-2">Instead of deleting rows from the table, mark them as deleted.</p>
+
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+ALTER TABLE employees ADD COLUMN is_deleted BOOLEAN DEFAULT FALSE;
+
+-- Soft delete a row
+UPDATE employees SET is_deleted = TRUE WHERE id = 101;
+
+-- Select only active records
+SELECT * FROM employees WHERE is_deleted = FALSE;
+        </pre>
+
+        <p class="text-sm mt-2">This helps preserve historical data and supports audit trails.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 Best Practices</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Log all errors with timestamps and query context</li>
+          <li>Use soft deletes when data needs to be recoverable or auditable</li>
+          <li>Regularly archive or purge soft-deleted data if needed</li>
+          <li>Document business rules around deletion and error handling</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

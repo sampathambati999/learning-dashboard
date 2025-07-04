@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DML - Insert, Update, Delete</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">DML - INSERT, UPDATE, DELETE</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>DML (Data Manipulation Language)</strong> includes SQL commands used to manipulate data in existing database objects. Unlike DDL, which defines the structure, DML is all about modifying the actual content inside tables.
+    </p>
+
+    <div class="grid gap-6 mt-6">
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📥 INSERT Statement</h2>
+        <p class="mb-2">
+          The <code>INSERT</code> statement adds new records into a table.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- Insert one row
+INSERT INTO employees (employee_id, full_name, department)
+VALUES (101, 'Alice Johnson', 'HR');
+
+-- Insert multiple rows
+INSERT INTO employees (employee_id, full_name, department)
+VALUES 
+  (102, 'Bob Smith', 'Finance'),
+  (103, 'Carol Lee', 'IT');
+        </pre>
+        <p class="text-sm mt-2">This adds one or more new records into the <code>employees</code> table.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">✏️ UPDATE Statement</h2>
+        <p class="mb-2">
+          The <code>UPDATE</code> statement modifies existing records in a table.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- Update a single row
+UPDATE employees
+SET department = 'Marketing'
+WHERE employee_id = 101;
+
+-- Update multiple rows
+UPDATE employees
+SET department = 'General'
+WHERE department = 'HR';
+        </pre>
+        <p class="text-sm mt-2">Always include a <code>WHERE</code> clause to avoid updating all records unintentionally.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🗑️ DELETE Statement</h2>
+        <p class="mb-2">
+          The <code>DELETE</code> statement removes one or more records from a table.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- Delete a specific employee
+DELETE FROM employees
+WHERE employee_id = 103;
+
+-- Delete all employees in a department
+DELETE FROM employees
+WHERE department = 'Finance';
+        </pre>
+        <p class="text-sm mt-2">Use caution! <code>DELETE</code> permanently removes rows unless wrapped in a transaction.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔐 Transactions and Rollback</h2>
+        <p>
+          DML operations can be grouped into transactions. This allows you to <code>ROLLBACK</code> changes if something goes wrong.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+BEGIN;
+UPDATE employees SET department = 'Unknown';
+ROLLBACK;  -- Undo the change
+
+-- Or use COMMIT to finalize changes
+COMMIT;
+        </pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🚀 Real-World Uses</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Adding new customer orders into an orders table</li>
+          <li>Updating product prices during a sale</li>
+          <li>Deleting expired sessions or logs</li>
+          <li>Building admin dashboards that modify backend data</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

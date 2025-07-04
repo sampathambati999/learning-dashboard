@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unix Scripting Basics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Unix Scripting Basics</h1>
+    <p class="text-gray-600">A beginner-friendly guide to writing shell scripts in Unix/Linux.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📜 What is a Shell Script?</h2>
+      <p class="text-sm">A shell script is a file containing a series of Unix commands. It automates repetitive tasks and can include variables, loops, conditionals, and functions.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">#!/bin/bash
+
+echo "Hello, World!"</pre>
+    </div>
+
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">🔤 Variables</h2>
+      <p class="text-sm">Variables store data that can be reused in scripts.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">name="John"
+echo "Welcome, $name"</pre>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🧪 Conditionals</h2>
+      <p class="text-sm">Use <code>if</code> statements to make decisions.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">if [ $age -ge 18 ]; then
+  echo "Adult"
+else
+  echo "Minor"
+fi</pre>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 Loops</h2>
+      <p class="text-sm">Loops let you repeat actions.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">for i in 1 2 3 4 5
+do
+  echo "Number $i"
+done</pre>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🔧 Functions</h2>
+      <p class="text-sm">Functions let you organize reusable blocks of code.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">greet() {
+  echo "Hi $1!"
+}
+
+greet "Alice"</pre>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">🚀 Running a Script</h2>
+      <p class="text-sm">Make the script executable and run it:</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">chmod +x script.sh
+./script.sh</pre>
+    </div>
+  </section>
+</body>
+</html>

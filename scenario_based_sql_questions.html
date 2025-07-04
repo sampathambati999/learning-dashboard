@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scenario-Based SQL Interview Questions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-8">
+    <h1 class="text-3xl font-bold text-indigo-600 mb-2">Scenario-Based SQL Interview Questions</h1>
+    <p class="text-gray-600">Practical and real-world SQL problems with solutions</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">1. Calculate Total Spend per Customer</h2>
+      <p class="text-sm">You have <code>Customers</code> and <code>Orders</code> tables. List each customer's total amount spent.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT c.Name,
+       SUM(o.TotalAmount) AS TotalSpent
+  FROM Customers c
+  JOIN Orders o 
+    ON c.CustomerID = o.CustomerID
+ GROUP BY c.Name;</pre>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">2. Employees Earning Above Department Average</h2>
+      <p class="text-sm">List employees whose salary exceeds their department’s average salary.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT Name
+  FROM Employees e
+ WHERE Salary > (
+   SELECT AVG(Salary)
+     FROM Employees
+    WHERE Department = e.Department
+ );</pre>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">3. Rank Sales Amounts per Product</h2>
+      <p class="text-sm">Assign a rank to each sale amount within its product category.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT SaleID,
+       ProductID,
+       SaleAmount,
+       RANK() OVER (
+         PARTITION BY ProductID
+         ORDER BY SaleAmount DESC
+       ) AS SaleRank
+  FROM Sales;</pre>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">4. Detect Three-Day Absence in Attendance</h2>
+      <p class="text-sm">Find employees who were absent for three consecutive days.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT EmployeeID, AbsentDate
+  FROM (
+    SELECT EmployeeID,
+           AbsentDate,
+           LEAD(AbsentDate, 1) OVER (PARTITION BY EmployeeID ORDER BY AbsentDate) AS NextDay,
+           LEAD(AbsentDate, 2) OVER (PARTITION BY EmployeeID ORDER BY AbsentDate) AS Next2Day
+      FROM Attendance
+  ) t
+ WHERE NextDay = AbsentDate + INTERVAL '1' DAY
+   AND Next2Day = AbsentDate + INTERVAL '2' DAY;</pre>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">5. Recursive Query for Employee Hierarchy</h2>
+      <p class="text-sm">Display all subordinates under a specific manager using a recursive CTE.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">WITH RECURSIVE Subordinates AS (
+  SELECT id, name, manager_id
+    FROM employees
+   WHERE manager_id = :managerId
+  UNION ALL
+  SELECT e.id, e.name, e.manager_id
+    FROM employees e
+    JOIN Subordinates s ON e.manager_id = s.id
+)
+SELECT * FROM Subordinates;</pre>
+    </div>
+  <div class="border-l-4 border-blue-500 pl-4">
+  <h2 class="text-xl font-semibold">6. Import/Export & ETL Basics – Loading Data into Teradata via SQL Assistant</h2>
+  <p class="text-sm">Teradata SQL Assistant allows users to load data from flat files (CSV, TXT) into Teradata tables using an import feature. Here's a common example of loading a CSV file into a Teradata table.</p>
+
+  <h3 class="text-md font-semibold mt-2">Step-by-step:</h3>
+  <ol class="list-decimal list-inside text-sm mb-2">
+    <li>Open Teradata SQL Assistant</li>
+    <li>Connect to your Teradata database</li>
+    <li>Create the target table (if not exists)</li>
+    <li>Prepare your CSV or tab-delimited file</li>
+    <li>Use the import feature and insert query</li>
+  </ol>
+
+  <h3 class="text-md font-semibold">Example Table Creation:</h3>
+  <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">CREATE TABLE employees (
+  emp_id INTEGER,
+  name VARCHAR(100),
+  department VARCHAR(50),
+  salary DECIMAL(10,2)
+);</pre>
+
+  <h3 class="text-md font-semibold">Import Data via SQL Assistant:</h3>
+  <p class="text-sm">1. Go to <code>File → Import Data</code> and select your file.<br>
+     2. Use this INSERT statement in SQL Assistant:</p>
+
+  <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">INSERT INTO employees (emp_id, name, department, salary)
+VALUES (?, ?, ?, ?);</pre>
+
+  <p class="text-sm">Each <code>?</code> represents a placeholder mapped to the corresponding column in the imported file. When executed, Teradata will load each row from the file into the table.</p>
+
+  <h3 class="text-md font-semibold">Tips:</h3>
+  <ul class="list-disc list-inside text-sm">
+    <li>Ensure the file encoding is UTF-8 or ANSI</li>
+    <li>Remove headers or start from the data row</li>
+    <li>Use the correct delimiter (comma/tab)</li>
+  </ul>
+</div>
+
+</section>
+</body>
+</html>

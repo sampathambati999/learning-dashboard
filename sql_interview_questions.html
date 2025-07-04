@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Interview Questions with Answers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-white p-6 font-sans text-gray-800">
+
+  <header class="max-w-4xl mx-auto mb-8">
+    <h1 class="text-3xl font-bold text-blue-700 mb-2">Top 100 SQL Interview Questions & Answers</h1>
+    <p class="text-gray-600">Covers basic, intermediate, and advanced SQL concepts</p>
+    <a href="index.html" class="text-blue-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <div class="max-w-4xl mx-auto mb-4">
+  <label for="filter" class="block text-sm font-medium text-gray-700 mb-1">Filter by level:</label>
+  <select id="filter" onchange="filterQuestions()" class="w-full max-w-xs p-2 border rounded-md">
+    <option value="all">All</option>
+    <option value="blue">Basic</option>
+    <option value="green">Intermediate</option>
+    <option value="yellow">Intermediate+</option>
+    <option value="purple">Advanced</option>
+    <option value="red">Expert</option>
+  </select>
+</div>
+
+<script>
+  function filterQuestions() {
+    const level = document.getElementById('filter').value;
+    const cards = document.querySelectorAll('.border-l-4');
+    cards.forEach(card => {
+      const colorClass = Array.from(card.classList).find(c => c.startsWith('border-') && c !== 'border-l-4');
+      const color = colorClass ? colorClass.split('-')[1] : '';
+      card.style.display = (level === 'all' || color === level) ? 'block' : 'none';
+    });
+  }
+</script>
+
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">1. What is SQL?</h2>
+        <p class="text-sm">SQL (Structured Query Language) is used to communicate with databases. It allows you to retrieve, manipulate, insert, and delete data.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">2. What are the different types of SQL statements?</h2>
+        <p class="text-sm">DML (Data Manipulation), DDL (Data Definition), DCL (Data Control), and TCL (Transaction Control).</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">3. What is the difference between WHERE and HAVING?</h2>
+        <p class="text-sm">WHERE filters rows before grouping, HAVING filters groups after aggregation.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">4. What is a JOIN? Explain types of joins.</h2>
+        <p class="text-sm">A JOIN combines rows from two or more tables. Types: INNER, LEFT, RIGHT, FULL OUTER, CROSS.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">5. Write a query to fetch the second highest salary from a table.</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT MAX(salary)
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);</pre>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">6. What is the difference between DELETE, TRUNCATE, and DROP?</h2>
+        <p class="text-sm">DELETE removes rows with a WHERE clause and can be rolled back. TRUNCATE removes all rows and cannot be rolled back. DROP deletes the table structure.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">7. What is a primary key?</h2>
+        <p class="text-sm">A primary key uniquely identifies each row in a table and cannot be NULL.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">8. What is a foreign key?</h2>
+        <p class="text-sm">A foreign key links records between two tables, referencing the primary key in another table.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">9. What is normalization?</h2>
+        <p class="text-sm">Normalization is the process of organizing data to reduce redundancy and improve data integrity.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">10. What is denormalization?</h2>
+        <p class="text-sm">Denormalization adds redundancy to improve read performance by joining fewer tables.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">11. What is the difference between CHAR and VARCHAR?</h2>
+        <p class="text-sm">CHAR is fixed-length, VARCHAR is variable-length. VARCHAR saves space for varying-length values.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">12. How do you find duplicate records in a table?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT name, COUNT(*)
+FROM employees
+GROUP BY name
+HAVING COUNT(*) > 1;</pre>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">13. What is a subquery?</h2>
+        <p class="text-sm">A subquery is a query nested within another SQL query. It is used to retrieve values to be used by the outer query.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">14. What is a correlated subquery?</h2>
+        <p class="text-sm">A correlated subquery depends on values from the outer query and runs once for each row processed by the outer query.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">15. What is the use of COALESCE()?</h2>
+        <p class="text-sm">COALESCE returns the first non-null value from the list of arguments.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT COALESCE(NULL, NULL, 'default', 'backup'); -- returns 'default'</pre>
+      </div>
+
+      <!-- Intermediate Questions -->
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">16. What does the GROUP BY clause do?</h2>
+        <p class="text-sm">It groups rows that have the same values into summary rows, like totals or counts.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">17. What is the difference between INNER JOIN and OUTER JOIN?</h2>
+        <p class="text-sm">INNER JOIN returns only matching rows. OUTER JOIN returns all rows from one or both tables, with NULLs where there are no matches.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">18. What is a CASE statement?</h2>
+        <p class="text-sm">It is used to apply conditional logic in a SQL query.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT name, 
+  CASE 
+    WHEN salary > 50000 THEN 'High'
+    ELSE 'Low'
+  END AS salary_level
+FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">19. What is the difference between UNION and UNION ALL?</h2>
+        <p class="text-sm">UNION removes duplicates; UNION ALL includes duplicates and is faster.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">20. What is an alias in SQL?</h2>
+        <p class="text-sm">An alias is a temporary name for a table or column, used for readability or brevity.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT name AS employee_name FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">21. What does DISTINCT do in a SELECT statement?</h2>
+        <p class="text-sm">DISTINCT removes duplicate records from the result set.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">22. What is an index in SQL?</h2>
+        <p class="text-sm">An index improves the speed of data retrieval operations on a database table.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">23. What is the default sorting order in SQL?</h2>
+        <p class="text-sm">Ascending (ASC) is the default sort order in SQL.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">24. How do you sort records in descending order?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT * FROM employees ORDER BY salary DESC;</pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">25. How do you get the number of records in a table?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT COUNT(*) FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">26. What does IS NULL do?</h2>
+        <p class="text-sm">It checks for NULL values in a column.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT * FROM employees WHERE manager_id IS NULL;</pre>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">27. What is a self join?</h2>
+        <p class="text-sm">A self join joins a table with itself to compare rows within the same table.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">28. What is the LIMIT clause?</h2>
+        <p class="text-sm">LIMIT restricts the number of records returned by a query (MySQL/PostgreSQL).</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">29. How to update multiple columns in SQL?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">UPDATE employees
+SET name = 'John Doe', salary = 60000
+WHERE id = 101;</pre>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">30. What is a view in SQL?</h2>
+        <p class="text-sm">A view is a virtual table based on the result set of a SQL query. It does not store data itself.</p>
+      </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">31. What is a window function?</h2>
+        <p class="text-sm">A window function performs a calculation across a set of rows related to the current row, without collapsing them into a group.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT name, salary, RANK() OVER (ORDER BY salary DESC) AS rank FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">32. What is the difference between RANK and DENSE_RANK?</h2>
+        <p class="text-sm">RANK leaves gaps between ranking values if there are duplicates, while DENSE_RANK does not.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">33. What is the purpose of PARTITION BY in SQL?</h2>
+        <p class="text-sm">PARTITION BY divides result sets into partitions to perform window functions independently for each partition.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">34. What is the difference between stored procedures and functions?</h2>
+        <p class="text-sm">Stored procedures perform operations but may not return values, while functions return a value and can be used in queries.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">35. What is a transaction in SQL?</h2>
+        <p class="text-sm">A transaction is a sequence of SQL operations that are executed as a single unit to maintain data consistency.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">36. What are ACID properties?</h2>
+        <p class="text-sm">ACID stands for Atomicity, Consistency, Isolation, and Durability — key properties ensuring reliable transactions.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">37. What is the use of COMMIT and ROLLBACK?</h2>
+        <p class="text-sm">COMMIT saves changes made by a transaction, while ROLLBACK undoes all changes since the last COMMIT.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">38. How do you handle errors in a SQL procedure?</h2>
+        <p class="text-sm">Use TRY/CATCH (SQL Server) or DECLARE HANDLER (MySQL) to capture and handle errors.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">39. What is a trigger?</h2>
+        <p class="text-sm">A trigger is a special procedure that runs automatically in response to specific database events like INSERT, UPDATE, DELETE.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">40. How can indexes improve performance?</h2>
+        <p class="text-sm">Indexes reduce the number of disk reads during queries by allowing quick lookups, but they can slow down writes.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">41. What is a clustered vs non-clustered index?</h2>
+        <p class="text-sm">A clustered index defines the physical order of data, while a non-clustered index maintains a separate structure.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">42. What does EXPLAIN do in SQL?</h2>
+        <p class="text-sm">EXPLAIN provides the execution plan of a query, showing how tables are joined and indexes are used.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">43. What is a temporary table?</h2>
+        <p class="text-sm">A temporary table stores intermediate results and is deleted automatically at the end of a session.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">44. What are common reasons for query slowness?</h2>
+        <p class="text-sm">Missing indexes, large scans, poor joins, outdated stats, and unfiltered queries are common causes.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">45. What is denormalization and when is it used?</h2>
+        <p class="text-sm">Denormalization adds redundancy to improve read performance, especially in analytical systems.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">46. What is a correlated subquery?</h2>
+        <p class="text-sm">A subquery that references columns from the outer query and is executed once for each row considered by the outer query.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">47. What is the difference between EXISTS and IN?</h2>
+        <p class="text-sm">EXISTS returns true if the subquery returns any rows. IN checks if a value matches any in a list. EXISTS is often more efficient with correlated subqueries.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">48. What are common aggregate functions in SQL?</h2>
+        <p class="text-sm">COUNT(), SUM(), AVG(), MIN(), MAX()</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">49. What is the purpose of the HAVING clause?</h2>
+        <p class="text-sm">HAVING is used to filter results after a GROUP BY clause is applied, unlike WHERE which filters before grouping.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">50. What is a CTE (Common Table Expression)?</h2>
+        <p class="text-sm">A CTE is a temporary result set defined within the execution scope of a single SQL statement using the WITH clause.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">WITH DeptCount AS (
+  SELECT department, COUNT(*) AS emp_count
+  FROM employees
+  GROUP BY department
+)
+SELECT * FROM DeptCount WHERE emp_count > 5;</pre>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">51. What is a recursive CTE?</h2>
+        <p class="text-sm">A recursive CTE is a CTE that references itself, often used for hierarchical or tree-structured data.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">52. How can you find the nth highest salary?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT DISTINCT salary
+FROM employees e1
+WHERE N-1 = (
+  SELECT COUNT(DISTINCT salary)
+  FROM employees e2
+  WHERE e2.salary > e1.salary
+);</pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">53. What are surrogate keys?</h2>
+        <p class="text-sm">Surrogate keys are system-generated identifiers (e.g., auto-increment IDs) used instead of natural business keys.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">54. What is an execution plan and how do you read it?</h2>
+        <p class="text-sm">An execution plan shows how the SQL engine will execute a query, detailing index usage, joins, and estimated costs.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">55. How can you improve the performance of a slow query?</h2>
+        <p class="text-sm">Indexing, avoiding SELECT *, filtering early with WHERE, reducing joins, and using EXPLAIN to diagnose inefficiencies.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">56. What is database sharding?</h2>
+        <p class="text-sm">Sharding is the practice of splitting a large database into smaller, faster, more manageable pieces called shards.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">57. What are materialized views?</h2>
+        <p class="text-sm">Materialized views store the result of a query physically and are refreshed periodically. They improve performance at the cost of storage.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">58. How do you prevent SQL injection?</h2>
+        <p class="text-sm">Use parameterized queries, stored procedures, and input validation to prevent SQL injection attacks.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">59. What is the difference between CHAR and VARCHAR?</h2>
+        <p class="text-sm">CHAR is fixed-length, while VARCHAR is variable-length. CHAR is faster for fixed-size data, VARCHAR saves space.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">60. How does indexing affect DML operations?</h2>
+        <p class="text-sm">Indexes speed up SELECTs but slow down INSERT, UPDATE, DELETE because they require maintaining index data.</p>
+      </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">61. What is a composite key?</h2>
+        <p class="text-sm">A composite key is a combination of two or more columns used together as a primary key.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">62. What are constraints in SQL?</h2>
+        <p class="text-sm">Constraints are rules enforced on data columns such as NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, and CHECK.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">63. What is a NULL value in SQL?</h2>
+        <p class="text-sm">NULL represents a missing or unknown value. It is not the same as an empty string or zero.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">64. What is the difference between DELETE and TRUNCATE?</h2>
+        <p class="text-sm">DELETE removes rows one at a time and can be rolled back. TRUNCATE removes all rows and is faster, but can't be rolled back in many databases.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">65. How do you rename a column in SQL?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">-- MySQL
+ALTER TABLE employees RENAME COLUMN old_name TO new_name;</pre>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">66. What is a schema in SQL?</h2>
+        <p class="text-sm">A schema is a logical container or namespace that holds database objects like tables, views, and procedures.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">67. What is the use of COALESCE in SQL?</h2>
+        <p class="text-sm">COALESCE returns the first non-null value in a list of expressions.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT COALESCE(NULL, NULL, 'Fallback'); -- Returns 'Fallback'</pre>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">68. What are SET operators in SQL?</h2>
+        <p class="text-sm">SET operators combine the results of two SELECT queries. Common ones include UNION, UNION ALL, INTERSECT, and MINUS.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">69. What is the use of the LIKE operator?</h2>
+        <p class="text-sm">LIKE is used in a WHERE clause to search for a specified pattern in a column.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT * FROM employees WHERE name LIKE 'A%';</pre>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">70. What is the BETWEEN operator in SQL?</h2>
+        <p class="text-sm">BETWEEN filters the result set within a certain range.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT * FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31';</pre>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">71. What is a data type in SQL?</h2>
+        <p class="text-sm">A data type defines the kind of value a column can hold, such as INTEGER, VARCHAR, DATE, etc.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">72. How can you get the current date in SQL?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT CURRENT_DATE; -- PostgreSQL / Oracle
+SELECT GETDATE();    -- SQL Server</pre>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">73. What are SQL aliases used for?</h2>
+        <p class="text-sm">Aliases rename columns or tables for display and readability.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT salary AS monthly_salary FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">74. What is a CROSS JOIN?</h2>
+        <p class="text-sm">A CROSS JOIN returns the Cartesian product of rows from the joined tables — every row from the first table combined with every row from the second.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">75. How do you remove duplicate rows from a result?</h2>
+        <p class="text-sm">Use SELECT DISTINCT to return unique rows only.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT DISTINCT department FROM employees;</pre>
+      </div>
+
+    <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">76. What is a UNION in SQL?</h2>
+        <p class="text-sm">UNION combines the result of two or more SELECT statements, removing duplicates by default.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">77. What is UNION ALL in SQL?</h2>
+        <p class="text-sm">UNION ALL combines the result of two SELECT statements but includes duplicate records as well.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">78. What is an OUTER JOIN?</h2>
+        <p class="text-sm">An OUTER JOIN returns matching rows and also non-matching rows from either table with NULLs for missing values.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">79. What is a RIGHT JOIN?</h2>
+        <p class="text-sm">A RIGHT JOIN returns all records from the right table and the matched records from the left table.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">80. What is a LEFT JOIN?</h2>
+        <p class="text-sm">A LEFT JOIN returns all records from the left table and the matched records from the right table.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">81. How do you retrieve records within a range?</h2>
+        <p class="text-sm">Use the BETWEEN operator for filtering data within a specific range.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">82. What is a CHECK constraint?</h2>
+        <p class="text-sm">A CHECK constraint limits the values that can be entered into a column by validating a condition.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">83. What is a default constraint?</h2>
+        <p class="text-sm">It assigns a default value to a column when no value is specified during insert.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">84. What are scalar functions?</h2>
+        <p class="text-sm">Scalar functions return a single value based on input. Examples: UPPER(), LEN(), NOW().</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">85. How to rename a table in SQL?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">ALTER TABLE old_table_name RENAME TO new_table_name;</pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">86. How do you calculate the length of a string in SQL?</h2>
+        <p class="text-sm">Use LENGTH() in MySQL, LEN() in SQL Server.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">87. What is the purpose of the NVL() function?</h2>
+        <p class="text-sm">In Oracle, NVL() replaces NULL with a specified value.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT NVL(salary, 0) FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">88. What are system functions?</h2>
+        <p class="text-sm">Functions that return system-level information, like CURRENT_DATE, USER, SESSION_USER.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">89. What is the difference between NOW() and CURRENT_TIMESTAMP?</h2>
+        <p class="text-sm">They often return the same value (current datetime), but syntax varies slightly across RDBMSs.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">90. What are built-in functions in SQL?</h2>
+        <p class="text-sm">SQL has many built-in functions including string, numeric, date/time, and aggregate functions.</p>
+      </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">91. What is a synonym in SQL?</h2>
+        <p class="text-sm">A synonym is an alias or alternative name for a database object such as a table or view, often used for abstraction or cross-schema access.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">92. What is a database cursor?</h2>
+        <p class="text-sm">A cursor is a database object used to retrieve, manipulate, and navigate row-by-row results of a query, typically in stored procedures.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">93. What is the difference between logical and physical data independence?</h2>
+        <p class="text-sm">Logical independence is the ability to change the logical schema without affecting applications; physical independence refers to changes in storage structure without impacting the schema.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold">94. What are the differences between OLTP and OLAP databases?</h2>
+        <p class="text-sm">OLTP (Online Transaction Processing) is optimized for write operations and quick lookups. OLAP (Online Analytical Processing) is designed for complex queries and analytics.</p>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold">95. What is a surrogate key?</h2>
+        <p class="text-sm">A surrogate key is a unique identifier for an entity, typically a sequential number generated by the system, with no business meaning.</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h2 class="text-xl font-semibold">96. How can you list all table names in a SQL database?</h2>
+        <p class="text-sm">Use catalog views or information schema, e.g.:</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE';</pre>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold">97. What is the purpose of ROW_NUMBER() in SQL?</h2>
+        <p class="text-sm">ROW_NUMBER() assigns a unique sequential integer to rows within a partition of a result set, often used for pagination.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold">98. What is the difference between DELETE and DROP?</h2>
+        <p class="text-sm">DELETE removes data from a table but retains the table structure. DROP deletes the table and its data permanently.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold">99. How can you find the highest value in a column?</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SELECT MAX(salary) FROM employees;</pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold">100. What is the difference between a primary key and a unique key?</h2>
+        <p class="text-sm">Both enforce uniqueness, but a table can have only one primary key (which cannot contain NULLs) and multiple unique keys (which can include NULLs).</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

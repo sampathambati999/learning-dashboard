@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DDL - Create, Alter, Drop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">DDL - CREATE, ALTER, DROP</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>DDL (Data Definition Language)</strong> is a subset of SQL used to define and manage all structures in a database, such as tables, schemas, views, indexes, and more. These statements define how data is stored and organized.
+    </p>
+
+    <div class="grid gap-6 mt-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 CREATE Statement</h2>
+        <p class="mb-2">
+          The <code>CREATE</code> statement is used to create new database objects like tables, indexes, views, or entire databases.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE TABLE students (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  birth_date DATE
+);
+        </pre>
+        <p class="text-sm mt-2">This creates a table named <code>students</code> with three columns.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔧 ALTER Statement</h2>
+        <p class="mb-2">
+          The <code>ALTER</code> statement modifies the structure of an existing database object, such as adding, deleting, or modifying columns in a table.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- Add a new column
+ALTER TABLE students ADD email VARCHAR(255);
+
+-- Modify a column's data type
+ALTER TABLE students MODIFY name VARCHAR(150);
+
+-- Drop a column
+ALTER TABLE students DROP COLUMN birth_date;
+        </pre>
+        <p class="text-sm mt-2">These commands change the structure of the <code>students</code> table dynamically.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🗑️ DROP Statement</h2>
+        <p class="mb-2">
+          The <code>DROP</code> statement is used to delete existing database objects. Once dropped, the data and structure are permanently removed.
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+DROP TABLE students;
+        </pre>
+        <p class="text-sm mt-2">This command deletes the <code>students</code> table completely from the database.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Important Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>DDL operations are <strong>auto-committed</strong>. Once executed, they cannot be rolled back unless explicitly wrapped in a transaction block (depending on the DBMS).</li>
+          <li>Always be cautious when using <code>DROP</code> — it removes data permanently.</li>
+          <li><code>ALTER</code> syntax may vary slightly between database systems (MySQL, Oracle, PostgreSQL).</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🚀 Use Cases</h2>
+        <p>
+          DDL commands are typically used during the initial design of a database, as well as when evolving the schema to meet new business or data requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

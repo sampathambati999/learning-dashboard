@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informatica Transformations Overview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Informatica Transformations Overview</h1>
+    <p class="text-gray-600">A guide to essential active and passive transformations in Informatica PowerCenter</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 Passive vs Active Transformations</h2>
+      <p class="text-sm">Passive transformations do not change the number of rows passing through them, while active transformations can increase, decrease, or reorder rows.</p>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">🧮 Expression Transformation (Passive)</h2>
+      <p class="text-sm">Used to calculate values in a single row using expressions, string manipulation, conditional logic, etc.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">IIF(SALARY &gt; 10000, 'High', 'Low')</pre>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🚪 Filter Transformation (Active)</h2>
+      <p class="text-sm">Filters rows based on a condition. Only matching rows are passed through.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">DEPARTMENT = 'HR'</pre>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🔗 Joiner Transformation (Active)</h2>
+      <p class="text-sm">Used to join two heterogeneous sources (e.g., flat file + database). Supports Normal, Master Outer, Detail Outer, and Full Outer joins.</p>
+    </div>
+
+    <div class="border-l-4 border-pink-500 pl-4">
+      <h2 class="text-xl font-semibold">📦 Lookup Transformation (Passive/Active)</h2>
+      <p class="text-sm">Performs lookup on a relational table, flat file, or pipeline to fetch related data. Can be connected or unconnected.</p>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">📊 Aggregator Transformation (Active)</h2>
+      <p class="text-sm">Performs aggregate calculations such as SUM, COUNT, AVG, MAX, MIN grouped by specified columns.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SUM(SALARY) GROUP BY DEPARTMENT</pre>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🚦 Router Transformation (Active)</h2>
+      <p class="text-sm">Routes data into multiple groups based on conditions, similar to a Filter but supports multiple output groups.</p>
+    </div>
+
+    <div class="border-l-4 border-gray-500 pl-4">
+      <h2 class="text-xl font-semibold">📃 Sorter Transformation (Active)</h2>
+      <p class="text-sm">Sorts rows based on one or more ports (columns). It is active because it can change the order and block data until sort completes.</p>
+    </div>
+
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🧵 Sequence Generator (Passive)</h2>
+      <p class="text-sm">Generates unique numeric values, often used to populate surrogate keys.</p>
+    </div>
+
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">💡 Union Transformation (Active)</h2>
+      <p class="text-sm">Merges data from multiple pipelines into a single pipeline. All input ports must be the same structure.</p>
+    </div>
+
+    <div class="border-l-4 border-yellow-600 pl-4">
+      <h2 class="text-xl font-semibold">🧼 Update Strategy (Active)</h2>
+      <p class="text-sm">Determines whether rows should be inserted, updated, deleted, or rejected based on business logic.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">IIF(NEW_FLAG = 'Y', DD_INSERT, DD_UPDATE)</pre>
+    </div>
+
+  </section>
+</body>
+</html>

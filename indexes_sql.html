@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQL Indexes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Indexes</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      An <strong>index</strong> in SQL is a performance-tuning method of allowing faster retrieval of records from a table. Indexes are especially useful for large tables and frequent queries.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 Creating an Index</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE INDEX idx_employees_department
+ON employees (department);
+        </pre>
+        <p class="text-sm mt-2">Creates an index on the <code>department</code> column to speed up queries that filter or sort by department.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔍 Using Indexes</h2>
+        <p class="text-sm">
+          Indexes are automatically used by the SQL engine when appropriate. You don't need to change your SELECT queries to use them.
+        </p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧹 Dropping an Index</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+DROP INDEX idx_employees_department;
+        </pre>
+        <p class="text-sm mt-2">Removes the index. Syntax may vary by database system.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Types of Indexes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>Single-column index</strong>: One column (e.g., department)</li>
+          <li><strong>Composite index</strong>: Multiple columns (e.g., last_name, first_name)</li>
+          <li><strong>Unique index</strong>: Ensures no duplicate values</li>
+          <li><strong>Full-text index</strong>: For searching textual data (e.g., articles)</li>
+          <li><strong>Clustered index</strong>: Defines the physical order of data (one per table)</li>
+          <li><strong>Non-clustered index</strong>: Stored separately; most common type</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Best Practices</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Index frequently filtered or sorted columns</li>
+          <li>Too many indexes can slow down inserts/updates</li>
+          <li>Regularly monitor index usage and rebuild fragmented indexes</li>
+          <li>Use tools like EXPLAIN PLAN or query analyzers to verify index use</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

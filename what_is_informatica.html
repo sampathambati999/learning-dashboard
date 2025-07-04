@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is Informatica?</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">What is Informatica?</h1>
+    <p class="text-gray-600">A complete overview of Informatica's key tools and platforms used for data integration, governance, and management.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      Informatica PowerCenter is a high-performance data integration platform used widely for building enterprise data warehouses and managing data pipelines. It enables ETL (Extract, Transform, Load) operations by connecting to various source systems (databases, flat files, mainframes), applying business logic and transformations, and loading into target systems such as relational databases or file repositories.<br><br>
+
+<b>Designer:</b> The Designer is the core development environment where data mappings are created. Developers define source and target definitions, create reusable transformations, and design mapping logic that governs how data flows and is transformed between systems.<br><br>
+
+<b>Workflow Manager:</b> This component is used to design and configure workflows, which are sequences of sessions and tasks that execute mappings. It supports linking multiple sessions together with decision conditions, event triggers, and task dependencies.<br><br>
+
+<b>Repository Manager:</b> Used primarily for managing folders, versions, user permissions, and metadata in the repository database. It allows you to import/export objects and organize them in a structured and secure manner.<br><br>
+
+<b>Monitor:</b> The Monitor interface provides real-time tracking and logging of workflows and sessions. You can view status, row-level statistics, session logs, and diagnose failures using this monitoring dashboard.</p>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">☁️ Informatica Intelligent Cloud Services (IICS)</h2>
+      <p class="text-sm">IICS is Informatica’s next-generation cloud-native data management platform. It supports a wide range of data integration capabilities including data synchronization, application integration, and data quality services—all on the cloud. IICS includes modules like:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Cloud Data Integration (CDI):</strong> Create and run cloud-native ETL/ELT jobs for various cloud and on-premises sources.</li>
+        <li><strong>Cloud Application Integration (CAI):</strong> Enables real-time application integration and API orchestration between cloud/SaaS and on-prem applications.</li>
+        <li><strong>Cloud Data Quality:</strong> Offers profiling, cleansing, standardizing, and matching of cloud data pipelines.</li>
+        <li><strong>Mass Ingestion:</strong> Load massive volumes of structured or unstructured data into data lakes or warehouses efficiently.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🧮 Informatica Data Quality (IDQ)</h2>
+      <p class="text-sm">Informatica Data Quality is used to assess and improve the quality of data across systems. It provides profiling capabilities to detect anomalies, as well as transformation rules for cleaning, formatting, and standardizing data. Developers can create reusable data quality rules, and business analysts can monitor results using dashboards. IDQ integrates with PowerCenter and IICS, making it ideal for implementing centralized or embedded data quality across ETL jobs.</p>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🔐 Informatica Master Data Management (MDM)</h2>
+      <p class="text-sm">MDM is a platform that allows organizations to create a single, trusted view of business-critical data entities such as customers, products, suppliers, and locations. Informatica MDM consolidates, deduplicates, and synchronizes master data across multiple systems, ensuring consistent and accurate data across the enterprise. It supports workflows, hierarchy management, and role-based security to manage the lifecycle of master data efficiently.</p>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🧠 Informatica Axon</h2>
+      <p class="text-sm">Axon is a data governance solution that enables collaboration between business users and IT teams. It creates a business-friendly data catalog with definitions, ownership, and data lineage. Axon supports regulatory compliance (GDPR, CCPA), helps define business glossaries, and connects policies with technical metadata, allowing organizations to govern their data assets effectively.</p>
+    </div>
+
+    <div class="border-l-4 border-pink-500 pl-4">
+      <h2 class="text-xl font-semibold">🔎 Informatica Enterprise Data Catalog (EDC)</h2>
+      <p class="text-sm">EDC is an AI-powered data catalog that scans metadata across cloud and on-prem data sources. It automatically maps data lineage, detects relationships between data objects, and enables users to search and discover trusted data assets. With features like impact analysis, profiling, and classifications, EDC serves as the technical backbone for data governance and analytics initiatives.</p>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">🧬 Informatica Data Engineering Integration (DEI)</h2>
+      <p class="text-sm">Formerly known as Big Data Management, DEI enables high-volume data processing using Apache Spark, Hadoop, and cloud-native engines. It allows users to push transformations into big data platforms to leverage distributed computing for better performance and scalability. DEI is often used for building data lakes and real-time ingestion pipelines with complex transformations.</p>
+    </div>
+
+    <div class="border-l-4 border-gray-500 pl-4">
+      <h2 class="text-xl font-semibold">⚙️ Informatica Developer Tool</h2>
+      <p class="text-sm">The Informatica Developer Tool is a unified development environment for creating data integration and data quality logic. It supports building mappings, rules, scorecards, and workflows. Used heavily in IDQ environments, this Eclipse-based client allows rule creation with visual expressions and real-time validation.</p>
+    </div>
+
+    <div class="border-l-4 border-teal-500 pl-4">
+      <h2 class="text-xl font-semibold">🧾 Informatica Administrator Console</h2>
+      <p class="text-sm">The Admin Console is a web-based interface for managing the Informatica domain. It allows you to configure nodes, services (like integration and repository), manage licenses, configure security policies, and monitor system health. It's essential for maintaining and administering the Informatica environment.</p>
+    </div>
+
+  </section>
+</body>
+</html>

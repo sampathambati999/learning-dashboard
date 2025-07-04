@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQL Views</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Views</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      A <strong>SQL View</strong> is a virtual table based on the result of a SQL query. It doesn't store data itself, but provides a saved query that can be treated like a table.
+      Views simplify complex queries, improve readability, and help enforce security and abstraction.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📄 Creating a View</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE VIEW active_employees AS
+SELECT id, name, department
+FROM employees
+WHERE status = 'Active';
+        </pre>
+        <p class="text-sm mt-2">Creates a view that shows only active employees.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔍 Querying a View</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT * FROM active_employees;
+        </pre>
+        <p class="text-sm mt-2">Query a view exactly like you would a table.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">✏️ Updating a View</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE OR REPLACE VIEW active_employees AS
+SELECT id, name, department, hire_date
+FROM employees
+WHERE status = 'Active';
+        </pre>
+        <p class="text-sm mt-2">Use <code>CREATE OR REPLACE</code> to redefine a view.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🗑️ Dropping a View</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+DROP VIEW active_employees;
+        </pre>
+        <p class="text-sm mt-2">Deletes the view from the database.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Views can be used to simplify complex joins or aggregations.</li>
+          <li>Some databases support <code>WITH CHECK OPTION</code> to restrict updates.</li>
+          <li>Views can sometimes be updatable, depending on DBMS and complexity.</li>
+          <li>They don't store data—only the query definition is stored.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

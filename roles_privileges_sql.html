@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Roles & Privileges</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Roles & Privileges</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>Roles and privileges</strong> in SQL define what actions a user can perform on the database. They are essential for securing data and managing user access control.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔐 Common Privileges</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>SELECT</strong> — read data from tables/views</li>
+          <li><strong>INSERT</strong> — add new data</li>
+          <li><strong>UPDATE</strong> — modify existing data</li>
+          <li><strong>DELETE</strong> — remove data</li>
+          <li><strong>EXECUTE</strong> — run stored procedures/functions</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧑‍💼 Granting Privileges</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+GRANT SELECT, INSERT ON employees TO user_name;
+        </pre>
+        <p class="text-sm mt-2">Allows a user to view and add data to the employees table.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">❌ Revoking Privileges</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+REVOKE INSERT ON employees FROM user_name;
+        </pre>
+        <p class="text-sm mt-2">Removes the ability to insert data into the table.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📦 Creating Roles</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE ROLE reporting_user;
+GRANT SELECT ON reports TO reporting_user;
+GRANT reporting_user TO user_name;
+        </pre>
+        <p class="text-sm mt-2">Roles allow grouping of privileges for easier management.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Tips & Best Practices</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Grant only necessary privileges (principle of least privilege)</li>
+          <li>Use roles instead of managing individual permissions</li>
+          <li>Regularly audit roles and privileges</li>
+          <li>Document user access policies</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

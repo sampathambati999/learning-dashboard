@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CASE Statements in SQL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">CASE Statements in SQL</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      The <strong>CASE</strong> statement in SQL provides conditional logic within queries. It works like an IF-THEN-ELSE structure and is useful for customizing output based on conditions.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Basic CASE Usage</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name,
+  salary,
+  CASE 
+    WHEN salary >= 80000 THEN 'High'
+    WHEN salary >= 50000 THEN 'Medium'
+    ELSE 'Low'
+  END AS salary_category
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">This assigns a label to each employee based on salary range.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📦 CASE in ORDER BY</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name, department
+FROM employees
+ORDER BY 
+  CASE department
+    WHEN 'IT' THEN 1
+    WHEN 'HR' THEN 2
+    ELSE 3
+  END;
+        </pre>
+        <p class="text-sm mt-2">Sorts employees in custom order by department.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🎯 Nested CASE</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name,
+  CASE
+    WHEN department = 'Sales' THEN 
+      CASE 
+        WHEN region = 'East' THEN 'East Sales'
+        ELSE 'Other Sales'
+      END
+    ELSE department
+  END AS dept_label
+FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Nested CASE allows for complex logic within a single column output.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>The first matching condition is used — others are ignored.</li>
+          <li>CASE works in SELECT, WHERE, ORDER BY, and GROUP BY clauses.</li>
+          <li>Always end with an <code>ELSE</code> block for completeness.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

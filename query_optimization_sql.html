@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Query Optimization Techniques</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Query Optimization Techniques</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      Query optimization improves SQL performance by minimizing resource usage (CPU, memory, I/O) and reducing execution time. Below are proven techniques and practices to write efficient SQL queries.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔍 Use Appropriate Indexes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Index columns used in WHERE, JOIN, ORDER BY</li>
+          <li>Prefer <code>INDEX SEEK</code> over <code>TABLE SCAN</code></li>
+          <li>Avoid using functions on indexed columns (e.g., <code>UPPER()</code>)</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">✂️ Select Only Needed Columns</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- Avoid:
+SELECT * FROM employees;
+
+-- Better:
+SELECT name, department FROM employees;
+        </pre>
+        <p class="text-sm mt-2">Reduces memory and network load, especially with large tables.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 Filter Early Using WHERE</h2>
+        <p class="text-sm">Apply filters as early as possible to limit rows being processed and joined.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name FROM employees WHERE status = 'Active';
+        </pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔁 Avoid Unnecessary Joins and Subqueries</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Remove unused JOINs to reduce overhead</li>
+          <li>Convert subqueries to JOINs where more efficient</li>
+          <li>Use EXISTS instead of IN for better performance in some DBs</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-pink-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Analyze Execution Plan</h2>
+        <p class="text-sm">Always check the query execution plan to identify bottlenecks, scans, and sort operations.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+EXPLAIN SELECT * FROM orders WHERE customer_id = 1001;
+        </pre>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">✅ Additional Tips</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Use LIMIT or FETCH for pagination</li>
+          <li>Batch updates/inserts for large data changes</li>
+          <li>Use UNION ALL instead of UNION if duplicates are acceptable</li>
+          <li>Keep statistics and indexes up to date</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

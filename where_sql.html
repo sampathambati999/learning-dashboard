@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WHERE, BETWEEN, IN, LIKE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">WHERE, BETWEEN, IN, LIKE</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      The <strong>WHERE</strong> clause filters rows based on specific conditions. It's one of the most essential parts of writing precise queries in SQL.
+      You can combine it with operators like <strong>BETWEEN</strong>, <strong>IN</strong>, <strong>LIKE</strong>, and logical connectors to match more complex patterns.
+    </p>
+
+    <div class="grid gap-6 mt-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔍 Basic WHERE Clause</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT *
+FROM employees
+WHERE department = 'Sales';
+        </pre>
+        <p class="text-sm mt-2">Returns only employees from the Sales department.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📅 BETWEEN Operator</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT *
+FROM orders
+WHERE order_date BETWEEN '2023-01-01' AND '2023-01-31';
+        </pre>
+        <p class="text-sm mt-2">Filters records that fall between two date (or number) values.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📦 IN Operator</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT *
+FROM products
+WHERE category IN ('Books', 'Clothing', 'Gadgets');
+        </pre>
+        <p class="text-sm mt-2">Selects rows that match one of several specified values.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔤 LIKE Operator</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT *
+FROM customers
+WHERE name LIKE 'J%';
+        </pre>
+        <p class="text-sm mt-2">Matches patterns (e.g., names starting with "J"). Use <code>%</code> as wildcard.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Combining Conditions</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT *
+FROM employees
+WHERE department = 'IT' AND salary > 60000;
+        </pre>
+        <p class="text-sm mt-2">You can combine multiple conditions using AND, OR, and NOT.</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informatica Parameterization and Variables</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Informatica Parameterization & Variables</h1>
+    <p class="text-gray-600">Learn how to create dynamic and reusable mappings using parameters and variables in Informatica PowerCenter</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🔧 What is Parameterization?</h2>
+      <p class="text-sm">Parameterization in Informatica allows you to create flexible mappings and workflows that can dynamically adapt to different inputs, paths, values, or configurations without modifying the mapping logic itself.</p>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">📁 Types of Parameters and Variables</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Mapping Parameters:</strong> Values assigned at the beginning and remain constant through the session.</li>
+        <li><strong>Mapping Variables:</strong> Can change during session execution and hold a persistent value across runs.</li>
+        <li><strong>Session Parameters:</strong> Parameters used in session-level configuration, e.g., source/target connection info.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🧾 Defining Parameters and Variables</h2>
+      <p class="text-sm">You define mapping parameters and variables using the <strong>Mapping Designer &rarr; Variables &rarr; Edit</strong> window.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">$$FilePath
+$$LoadDate
+$$RunID</pre>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">⚙️ Assigning Values in Parameter File</h2>
+      <p class="text-sm">Parameter files are flat text files with key-value pairs grouped by session or workflow context.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">[Session.s_m_load_customer]
+$$FilePath=/data/in/customer.csv
+$$LoadDate=SYSDATE</pre>
+    </div>
+
+    <div class="border-l-4 border-pink-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 Using Variables in Expression</h2>
+      <p class="text-sm">You can reference and manipulate variables inside expression transformations using functions like <code>SETVARIABLE</code>, <code>SETMAXVARIABLE</code>, etc.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">SETVARIABLE($$LastRunDate, CURRENT_DATE)</pre>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🧠 Variable Evaluation Sequence</h2>
+      <p class="text-sm">Informatica evaluates variables in the following order:</p>
+      <ul class="list-decimal list-inside text-sm">
+        <li>Pre-Session Variable Assignment</li>
+        <li>Parameter File</li>
+        <li>Initial Value</li>
+        <li>Value from Previous Session</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">📌 Best Practices</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li>Use consistent naming like <code>$$ParamName</code></li>
+        <li>Separate parameter files by environment (dev/test/prod)</li>
+        <li>Keep variables externally controlled whenever possible</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

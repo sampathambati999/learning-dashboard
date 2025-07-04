@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informatica Error Handling and Debugging</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Informatica Error Handling & Debugging</h1>
+    <p class="text-gray-600">Strategies and tools for identifying, managing, and resolving issues in Informatica workflows and sessions</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">❌ Types of Errors in Informatica</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Source Errors:</strong> Data not readable or invalid file/database connection.</li>
+        <li><strong>Transformation Errors:</strong> Data type mismatch, null handling, logic issues.</li>
+        <li><strong>Target Errors:</strong> Constraint violations, target load failures.</li>
+        <li><strong>Session Errors:</strong> Configuration errors, connection timeouts, variable issues.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🪛 Error Handling Techniques</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li>Use <strong>Error Logging</strong> in sessions (Write to Log/Reject File).</li>
+        <li>Enable <strong>Stop on Errors</strong> with a threshold.</li>
+        <li>Use <strong>Update Strategy</strong> to control insert/update/delete/reject logic.</li>
+        <li>Capture <strong>Reject rows</strong> for analysis.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🧪 Debugger in Mapping Designer</h2>
+      <p class="text-sm">You can use the debugger to step through row-level transformations and inspect intermediate results.</p>
+      <ul class="list-disc list-inside text-sm">
+        <li>Enable breakpoints on ports or transformations</li>
+        <li>Run debugger in connected or disconnected mode</li>
+        <li>View transformation output row by row</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📑 Session Log Analysis</h2>
+      <p class="text-sm">Use the Workflow Monitor to open detailed session logs:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li>Search for keywords like <code>ERROR</code>, <code>FATAL</code>, <code>WARNING</code></li>
+        <li>Trace row counts, transformation stats, rejection reasons</li>
+        <li>Filter logs by timestamp to isolate phases</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">📂 Reject and Bad Files</h2>
+      <p class="text-sm">Configure sessions to generate reject files for target and source rejections.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">badfile_dir/session_name.bad
+session_name.rfl — reject file with row-level details</pre>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 Auto-Restart and Error Email Alerts</h2>
+      <p class="text-sm">In workflows, use event wait and email tasks to send alerts. Also configure session retry policies under session properties.</p>
+    </div>
+  </section>
+</body>
+</html>

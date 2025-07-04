@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQL Set Operators</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Set Operators</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      <strong>Set operators</strong> in SQL are used to combine the results of two or more SELECT statements. They help merge datasets while preserving (or removing) duplicates depending on the operator.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧩 UNION</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name FROM employees_us
+UNION
+SELECT name FROM employees_uk;
+        </pre>
+        <p class="text-sm mt-2">Combines results from both queries and removes duplicates.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧩 UNION ALL</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name FROM employees_us
+UNION ALL
+SELECT name FROM employees_uk;
+        </pre>
+        <p class="text-sm mt-2">Includes all records from both queries, including duplicates.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 INTERSECT</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+SELECT name FROM employees_us
+INTERSECT
+SELECT name FROM employees_uk;
+        </pre>
+        <p class="text-sm mt-2">Returns only the rows common to both result sets.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🚫 EXCEPT / MINUS</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- In PostgreSQL:
+SELECT name FROM employees_us
+EXCEPT
+SELECT name FROM employees_uk;
+
+-- In Oracle:
+SELECT name FROM employees_us
+MINUS
+SELECT name FROM employees_uk;
+        </pre>
+        <p class="text-sm mt-2">Returns rows in the first query that are not in the second.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>All SELECTs must return the same number and order of columns with compatible data types.</li>
+          <li>INTERSECT and EXCEPT may not be supported by all SQL engines (e.g., MySQL).</li>
+          <li>Use ORDER BY only at the end of the full set operation.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

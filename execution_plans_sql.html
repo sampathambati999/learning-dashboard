@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Execution Plans</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Execution Plans</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      An <strong>execution plan</strong> shows how a SQL query will be executed by the database engine. It reveals the query’s access paths, join methods, and performance cost. Studying execution plans is essential for query tuning and indexing decisions.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📜 How to View Execution Plans</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+-- SQL Server
+SET SHOWPLAN_ALL ON;
+GO
+SELECT * FROM employees WHERE department = 'Sales';
+GO
+SET SHOWPLAN_ALL OFF;
+
+-- PostgreSQL
+EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+
+-- MySQL
+EXPLAIN SELECT * FROM employees WHERE department = 'Sales';
+        </pre>
+        <p class="text-sm mt-2">Use EXPLAIN or SHOWPLAN to generate the plan.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🔍 Key Elements in a Plan</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>Scan Type:</strong> Full Table Scan, Index Scan, Index Seek</li>
+          <li><strong>Join Methods:</strong> Nested Loop, Hash Join, Merge Join</li>
+          <li><strong>Estimated Rows:</strong> Rows expected to be processed</li>
+          <li><strong>Cost:</strong> Relative cost of the operation</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Common Performance Issues</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Missing indexes</li>
+          <li>Using functions on indexed columns (disables index)</li>
+          <li>Cartesian products due to missing join conditions</li>
+          <li>Unnecessary large sorts and scans</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🛠️ Tools for Analysis</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>SQL Server Management Studio (SSMS) — Execution Plan tab</li>
+          <li>PostgreSQL EXPLAIN ANALYZE with pgAdmin</li>
+          <li>MySQL Workbench — Visual Explain</li>
+          <li>Snowflake — Query Profile tab</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">✅ Best Practices</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Use EXPLAIN to understand performance before optimization</li>
+          <li>Prefer indexed lookups over full scans when possible</li>
+          <li>Combine indexing and query rewrites for better plans</li>
+          <li>Regularly test and update statistics on your tables</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stored Procedures in SQL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">Stored Procedures in SQL</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      A <strong>stored procedure</strong> is a named collection of SQL statements stored in the database. Procedures help encapsulate logic, reuse code, and improve performance by reducing network traffic.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📄 Creating a Stored Procedure</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE PROCEDURE GetEmployeeByDept (
+  IN dept_name VARCHAR(50)
+)
+BEGIN
+  SELECT * FROM employees
+  WHERE department = dept_name;
+END;
+        </pre>
+        <p class="text-sm mt-2">Defines a procedure with an input parameter to return employees by department.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚙️ Executing a Procedure</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CALL GetEmployeeByDept('Sales');
+        </pre>
+        <p class="text-sm mt-2">Runs the stored procedure with the specified input value.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🛠️ Updating a Procedure</h2>
+        <p class="text-sm">In most databases, you must drop and recreate procedures to modify them.</p>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+DROP PROCEDURE IF EXISTS GetEmployeeByDept;
+-- Then recreate with CREATE PROCEDURE ...
+        </pre>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Benefits</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Improves performance through execution plan reuse</li>
+          <li>Encapsulates complex logic in one reusable unit</li>
+          <li>Reduces SQL duplication across applications</li>
+          <li>Can include control flow: IF, WHILE, CASE, etc.</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📌 Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Stored procedures are supported by MySQL, PostgreSQL, SQL Server, Oracle, etc.</li>
+          <li>Syntax varies slightly between databases</li>
+          <li>Some support output and INOUT parameters as well</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

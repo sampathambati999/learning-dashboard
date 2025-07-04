@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQL Triggers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-white min-h-screen p-6 font-sans text-gray-800">
+
+  <header class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-blue-700">SQL Triggers</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="bg-white shadow-md rounded-xl p-6 max-w-4xl mx-auto">
+    <p class="mb-4 text-lg">
+      A <strong>trigger</strong> is a special type of stored procedure that automatically executes ("fires") in response to certain events on a table, such as INSERT, UPDATE, or DELETE operations.
+      Triggers are used for auditing, enforcing business rules, and synchronizing tables.
+    </p>
+
+    <div class="grid gap-6">
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚡ Creating a Trigger</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE TRIGGER before_insert_employee
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+  SET NEW.created_at = NOW();
+END;
+        </pre>
+        <p class="text-sm mt-2">Automatically sets the <code>created_at</code> timestamp before inserting a new employee.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">📤 AFTER Trigger Example</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+CREATE TRIGGER after_update_salary
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+  INSERT INTO audit_log (employee_id, old_salary, new_salary, changed_at)
+  VALUES (OLD.id, OLD.salary, NEW.salary, NOW());
+END;
+        </pre>
+        <p class="text-sm mt-2">Inserts a record into an audit log after an employee’s salary is updated.</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🗑️ Dropping a Trigger</h2>
+        <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+DROP TRIGGER IF EXISTS before_insert_employee;
+        </pre>
+        <p class="text-sm mt-2">Removes an existing trigger from the database.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">🧠 Use Cases</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Automatically track changes in sensitive tables</li>
+          <li>Maintain audit logs without modifying application code</li>
+          <li>Validate or modify data before it is committed</li>
+          <li>Enforce custom constraints and business logic</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h2 class="text-xl font-semibold mb-1">⚠️ Notes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Triggers can affect performance—use them wisely</li>
+          <li>Can be fired BEFORE or AFTER insert/update/delete</li>
+          <li>Some DBMS may have restrictions on trigger nesting</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
