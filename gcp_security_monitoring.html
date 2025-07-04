@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCP Security & Monitoring</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">GCP Security & Monitoring</h1>
+    <p class="text-gray-600">Comprehensive security tools and observability services offered by Google Cloud Platform.</p>
+    <a href="gcp-dashboard-cards.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to GCP Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <!-- VPC & Firewall Rules -->
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🛡️ VPC & Firewall Rules</h2>
+      <p class="text-sm">Virtual Private Cloud (VPC) allows you to define a logically isolated network in GCP where you can deploy and manage your cloud resources. It includes fine-grained subnetting, regional networking, and peering options that support both hybrid and multi-cloud strategies.</p>
+      <p class="text-sm">VPC firewall rules allow control of traffic to and from instances based on protocol, port, and source/destination IP ranges. Unlike traditional firewalls, these rules apply at the virtual machine level and are enforced globally for all associated resources.</p>
+      <p class="text-sm">You can define ingress and egress rules to restrict traffic and enhance network security. GCP also supports hierarchical firewalls, allowing you to enforce policies at the organization or folder level for better governance and compliance.</p>
+      <p class="text-sm">VPC Service Controls offer an added layer of security by mitigating data exfiltration risks, particularly useful for sensitive services like BigQuery and Cloud Storage. They help define service perimeters around GCP resources.</p>
+    </div>
+
+    <!-- Cloud Logging & Monitoring -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📈 Cloud Logging & Monitoring</h2>
+      <p class="text-sm">Cloud Logging and Monitoring (formerly Stackdriver) provide unified observability for applications and infrastructure on GCP. Cloud Logging collects logs from VMs, Kubernetes, App Engine, and other services, while Cloud Monitoring offers dashboards, metrics, and alerts for infrastructure health.</p>
+      <p class="text-sm">With custom and system metrics, you can track CPU, memory, disk, latency, and other KPIs for both cloud-native and hybrid environments. Monitoring supports Uptime Checks and alerting policies that notify via email, SMS, or integrations with tools like PagerDuty and Slack.</p>
+      <p class="text-sm">Log-based metrics allow you to derive monitoring signals directly from your logs. These metrics can be visualized in real time and used to trigger alerts or automated remediation actions using Cloud Functions or Workflows.</p>
+      <p class="text-sm">The integration of Logging and Monitoring with other GCP services like Pub/Sub, BigQuery, and Security Command Center makes it easy to centralize operational visibility and support incident response strategies across distributed systems.</p>
+    </div>
+
+    <!-- Secret Manager -->
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">🔐 Secret Manager</h2>
+      <p class="text-sm">Secret Manager is a secure and convenient service for storing API keys, passwords, certificates, and other sensitive information. It provides fine-grained access control using IAM and integrates with audit logs to track secret usage.</p>
+      <p class="text-sm">Secrets are versioned, encrypted using Google-managed keys (or your own with CMEK), and can be accessed by applications with minimal latency. This enables secure deployment of apps that depend on sensitive config without hardcoding credentials.</p>
+      <p class="text-sm">You can use Secret Manager with Cloud Functions, Cloud Run, GKE, and Compute Engine. Secrets can be automatically rotated and monitored for access using Cloud Audit Logs, enhancing security posture and governance.</p>
+      <p class="text-sm">Using Secret Manager is a best practice for DevOps and security teams to ensure secure and compliant application development across environments, while reducing the risk of accidental leaks or exposures.</p>
+    </div>
+  </section>
+</body>
+</html>

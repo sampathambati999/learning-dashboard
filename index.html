@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+  <header class="relative bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-b-3xl shadow-lg px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between">
+  <div class="text-center md:text-left">
+    <h1 class="text-3xl font-extrabold flex items-center gap-2">
+      <i class="fas fa-graduation-cap"></i>
+      Learning Hub
+    </h1>
+    <p class="text-white text-opacity-90 mt-1 text-sm md:text-base">Your personalized learning and skills center</p>
+  </div>
+  <div class="mt-4 md:mt-0 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-right text-sm shadow-md">
+    <div id="time" class="font-bold text-lg"></div>
+    <div id="date" class="opacity-80"></div>
+  </div>
+</header>
+
+  <style>
+    .tab-btn {
+      transition: background-color 0.3s ease;
+    }
+    .tab-btn:hover {
+      background-color: #e0f2fe;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 0.75rem;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.6s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .dark-mode {
+      background-color: #1f2937;
+      color: white;
+    }
+    .dark-mode .bg-white {
+      background-color: #374151 !important;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-[#e0f7fa] via-[#e1f5fe] to-[#ffffff] min-h-screen font-sans" id="body">
+
+
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleDarkMode()" class="text-white hover:text-yellow-300"><i class="fas fa-moon"></i></button>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="flex flex-col md:flex-row">
+    <aside id="sidebar" class="bg-white shadow-lg w-full md:w-64 p-4 sticky top-0 z-10 hidden md:block rounded-br-2xl">
+      <ul id="tab-buttons" class="space-y-2">
+        <li><button onclick="showTab('sql', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fas fa-database mr-2"></i>SQL</button></li>
+        <li><button onclick="showTab('informatica', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fas fa-project-diagram mr-2"></i>Informatica</button></li>
+        <li><button onclick="showTab('unix', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fas fa-terminal mr-2"></i>Unix</button></li>
+        <li><button onclick="showTab('teradata', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fas fa-server mr-2"></i>Teradata</button></li>
+        <li><button onclick="showTab('gcp', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fab fa-google mr-2"></i>GCP</button></li>
+        <li><button onclick="showTab('snowflake', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fas fa-snowflake mr-2"></i>Snowflake
+		<li><button onclick="showTab('dbt', event)" class="tab-btn w-full text-left px-3 py-2 rounded"><i class="fas fa-cogs mr-2"></i>DBT</button></li>
+		</button></li>
+      </ul>
+    </aside>
+
+    <main class="flex-1 p-6 space-y-6">
+      <section id="sql" class="tab-content fade-in">
+        <h2 class="text-2xl font-bold mb-4">SQL</h2>
+         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a href="what-is-sql.html" class="card p-4 shadow block">What is SQL?</a>
+		  <a href="data_types_sql.html" class="card p-4 shadow block">Data Types in SQL</a>
+		  <a href="ddl_sql.html" class="card p-4 shadow block">DDL - Create, Alter, Drop</a>
+		  <a href="dml_sql.html" class="card p-4 shadow block">DML - Insert, Update, Delete</a>
+		  <a href="select_sql.html" class="card p-4 shadow block">SELECT Statement Basics</a>
+		  <a href="where_sql.html" class="card p-4 shadow block">WHERE, BETWEEN, IN, LIKE</a>
+		  <a href="group_order_sql.html" class="card p-4 shadow block">ORDER BY & GROUP BY</a>
+		  <a href="joins_sql.html" class="card p-4 shadow block">SQL Joins</a>
+		  <a href="constraints_sql.html" class="card p-4 shadow block">SQL Constraints_sql</a>
+		  <a href="subqueries_sql.html" class="card p-4 shadow block">Subqueries</a>
+		  <a href="string_aggregation_sql.html" class="card p-4 shadow block">String Aggregation & NULL Handling</a>
+		  <a href="window_functions_sql.html" class="card p-4 shadow block">Window & Ranking Functions in SQL</a>
+		  <a href="joins_sql.html" class="card p-4 shadow block">SQL Joins</a>
+		  <a href="aggregate_functions_sql.html" class="card p-4 shadow block">Aggregate Functions</a>
+		  <a href="set_operators_sql.html" class="card p-4 shadow block">Set Operators</a>
+		  <a href="case_statements_sql.html" class="card p-4 shadow block">CASE Statements</a>
+          <a href="views_sql.html" class="card p-4 shadow block">Views</a>
+		  <a href="indexes_sql.html" class="card p-4 shadow block">Indexes & Optimization</a>
+		  <a href="stored_procedures_sql.html" class="card p-4 shadow block">Stored Procedures & Functions</a>
+		  <a href="transactions_sql.html" class="card p-4 shadow block">SQL Transactions</a>
+		  <a href="triggers_sql.html" class="card p-4 shadow block">SQL Triggers</a>
+		  <a href="data_modeling_sql.html" class="card p-4 shadow block">SQL Data Modelling</a>
+		  <a href="dimensional_modeling_sql.html" class="card p-4 shadow block">Dimensional Modeling</a>
+		  <a href="roles_privileges_sql.html" class="card p-4 shadow block">Roles & Privileges</a>
+		  <a href="etl_import_export_sql.html" class="card p-4 shadow block">Import/Export (ETL basics)</a>
+		  <a href="execution_plans_sql.html" class="card p-4 shadow block">Execution Plans</a>
+		  <a href="query_optimization_sql.html" class="card p-4 shadow block">Query Optimization Techniques </a>
+		  <a href="error_handling_soft_deletes_sql.html" class="card p-4 shadow block">Error Handling </a>
+		  <a href="sql_interview_questions.html" class="card p-4 shadow block">SQL Interview Questions</a>
+		  <a href="scenario_based_sql_questions.html" class="card p-4 shadow block">SQL Scenario Based Questions</a>
+        </div>
+      </section>
+
+      <section id="informatica" class="tab-content hidden fade-in">
+        <h2 class="text-2xl font-bold mb-4">Informatica</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+		  <a href="what_is_informatica.html" class="card p-4 shadow block">What is Informatica</a>
+          <a href="informatica_transformations_overview.html" class="card p-4 shadow block">Transformations Overview</a>
+		  <a href="informatica_parameterization_variables.html" class="card p-4 shadow block">Parameterization and Variables</a>
+		  <a href="informatica_sessions_worklets.html" class="card p-4 shadow block">Sessions and Worklets</a>
+		  <a href="informatica_error_handling_debugging.html" class="card p-4 shadow block">Error Handling & Debugging</a>
+		  <a href="informatica_cdc_change_data_capture.html" class="card p-4 shadow block">CDC (Change Data Capture)</a>
+		  <a href="informatica_partitioning_pushdown_optimization.html" class="card p-4 shadow block">Partitioning & Pushdown Optimization</a>
+		  <a href="informatica_deployment_migration.html" class="card p-4 shadow block">Deployment & Migration</a>
+		  <a href="informatica_versioning_repository.html" class="card p-4 shadow block">Versioning & Repository Management</a>
+		  <a href="informatica_scheduler_workflow_automation.html" class="card p-4 shadow block">Scheduler & Workflow Automation</a>
+		  <a href="informatica_cloud_iics.html" class="card p-4 shadow block">Informatica Cloud (IICS)</a>		 
+        </div>
+      </section>
+
+      <section id="unix" class="tab-content hidden fade-in">
+        <h2 class="text-2xl font-bold mb-4">Unix</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+		  <a href="unix_shell_commands.html" class="card p-4 shadow block">Shell Commands</a>
+		  <a href="unix_scripting_basics.html" class="card p-4 shadow block">Scripting Basics</a>		 
+        </div>
+      </section>
+
+      <section id="teradata" class="tab-content hidden fade-in">
+        <h2 class="text-2xl font-bold mb-4">Teradata</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+		<a href="teradata_core_concepts.html" class="card p-4 shadow block">Teradata Core Concepts</a>
+		  <a href="teradata_performance_tuning.html" class="card p-4 shadow block">Performance & Tuning</a>
+		  <a href="teradata_data_loading_tools.html" class="card p-4 shadow block">Data Loading & Utilities</a>
+		  <a href="teradata_administration_security.html" class="card p-4 shadow block">Administration & Security</a>
+		  <a href="teradata_advanced_topics.html" class="card p-4 shadow block">Advanced Topics</a>
+		  <a href="teradata_interview_questions.html" class="card p-4 shadow block">Teradata Interview Questions</a>
+        </div>
+      </section>
+
+      <section id="gcp" class="tab-content hidden fade-in">
+        <h2 class="text-2xl font-bold mb-4">GCP</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+		  <a href="gcp_foundational_concepts.html" class="card p-4 shadow block">Foundational Concepts</a>
+		  <a href="gcp_core_services.html" class="card p-4 shadow block">Core Services</a>
+		  <a href="gcp_data_analytics.html" class="card p-4 shadow block">Data & Analytics</a>
+		  <a href="gcp_security_monitoring.html" class="card p-4 shadow block">Security & Monitoring</a>
+		  <a href="gcp_devops_cicd.html" class="card p-4 shadow block">DevOps & CI/CD</a>
+		  <a href="gcp_storage_databases.html" class="card p-4 shadow block">Storage & Databases</a>  
+        </div>
+      </section>
+
+      <section id="snowflake" class="tab-content hidden fade-in">
+        <h2 class="text-2xl font-bold mb-4">Snowflake</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card p-4 shadow">Data Warehouse Concepts</div>
+          <div class="card p-4 shadow">Virtual Warehouses</div>
+          <div class="card p-4 shadow">SnowSQL, Stages & Pipes</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function showTab(id, event) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('bg-blue-100', 'font-semibold'));
+      if (event && event.target) {
+        event.target.classList.add('bg-blue-100', 'font-semibold');
+      }
+    }
+
+    function toggleDarkMode() {
+      document.getElementById('body').classList.toggle('dark-mode');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const defaultTab = document.querySelector("[onclick*=sql]");
+      if (defaultTab) defaultTab.click();
+
+      document.getElementById('menu-toggle').addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('hidden');
+      });
+    });
+  </script>
+  <script>
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('time').textContent = now.toLocaleTimeString();
+    document.getElementById('date').textContent = now.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
+  
+</body>
+</html>

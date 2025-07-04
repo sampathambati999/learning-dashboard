@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCP Core Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">GCP Core Services</h1>
+    <p class="text-gray-600">Explore key compute and deployment services offered by Google Cloud Platform.</p>
+    <a href="gcp-dashboard-cards.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to GCP Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <!-- Compute Engine -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">💻 Compute Engine</h2>
+      <p class="text-sm">Compute Engine lets you create and manage virtual machines (VMs) on Google’s infrastructure. It supports custom machine types, preemptible instances, and integrates with VPC, IAM, and storage services. You have full control over OS, startup scripts, firewall rules, and auto-scaling groups.</p>
+    </div>
+
+    <!-- Cloud Storage -->
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">🗂️ Cloud Storage</h2>
+      <p class="text-sm">Cloud Storage is a scalable, durable, and secure object storage service used to store unstructured data. You can organize files in buckets, control access with IAM, and use lifecycle rules to automate deletion or archival. It supports multi-regional, regional, nearline, and coldline storage classes.</p>
+    </div>
+
+    <!-- Cloud Functions -->
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">⚡ Cloud Functions</h2>
+      <p class="text-sm">Cloud Functions is a serverless platform where you write code that runs in response to events (e.g., HTTP requests, Pub/Sub messages). It automatically handles scaling, logging, and security, allowing you to build microservices without managing servers.</p>
+    </div>
+
+    <!-- App Engine -->
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🚀 App Engine</h2>
+      <p class="text-sm">App Engine is a fully managed serverless application platform. It supports multiple programming languages and handles infrastructure concerns like scaling, load balancing, patching, and monitoring. You just deploy your code and Google handles the rest.</p>
+    </div>
+
+    <!-- Kubernetes Engine -->
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">📦 Google Kubernetes Engine (GKE)</h2>
+      <p class="text-sm">GKE is a managed environment for deploying, managing, and scaling containerized applications using Kubernetes. It provides built-in logging, monitoring, automatic upgrades, and node pool management, making it ideal for production-grade container orchestration.</p>
+    </div>
+  </section>
+</body>
+</html>

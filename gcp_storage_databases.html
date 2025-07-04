@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCP Storage & Databases</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">GCP Storage & Databases</h1>
+    <p class="text-gray-600">Explore scalable, managed storage and database solutions offered by Google Cloud.</p>
+    <a href="gcp-dashboard-cards.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to GCP Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <!-- Cloud SQL -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🗄️ Cloud SQL</h2>
+      <p class="text-sm">Cloud SQL is a fully managed relational database service for MySQL, PostgreSQL, and SQL Server. It simplifies database operations such as patching, replication, backups, and failover, making it ideal for production-ready applications requiring transactional integrity and scalability. It supports secure connections via private IP, IAM integration, and built-in high availability.</p>
+    </div>
+
+    <!-- Firestore -->
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">📘 Firestore</h2>
+      <p class="text-sm">Cloud Firestore is a flexible, scalable NoSQL document database built for serverless applications. It supports real-time data syncing, offline mode, and strong consistency. Firestore is well-suited for mobile, web, and IoT apps that require quick development, automatic scaling, and global replication.</p>
+    </div>
+
+    <!-- Cloud Spanner -->
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🌍 Cloud Spanner</h2>
+      <p class="text-sm">Cloud Spanner is a globally distributed, horizontally scalable, and strongly consistent relational database. It combines the benefits of traditional relational databases with the scalability of NoSQL. Spanner is used for mission-critical applications that require high availability, zero-downtime schema changes, and multi-region replication.</p>
+    </div>
+  </section>
+</body>
+</html>

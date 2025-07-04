@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCP Foundational Concepts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">GCP Foundational Concepts</h1>
+    <p class="text-gray-600">Understand the key building blocks and architecture of Google Cloud Platform.</p>
+    <a href="gcp-dashboard-cards.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to GCP Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <!-- What is GCP -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🌐 What is GCP?</h2>
+      <p class="text-sm">Google Cloud Platform (GCP) is a suite of cloud computing services offered by Google. It provides scalable, secure, and highly available infrastructure for hosting applications, storing data, performing analytics, and more. GCP competes with other major cloud platforms like AWS and Azure and is known for its strengths in AI/ML, analytics, and network infrastructure.</p>
+    </div>
+
+    <!-- GCP Global Infrastructure -->
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">🗺️ GCP Global Infrastructure</h2>
+      <p class="text-sm">GCP operates in multiple <strong>regions</strong> across the globe. Each region consists of multiple <strong>zones</strong>, which are isolated environments within the region. This design helps GCP provide fault tolerance, low latency, and high availability. Customers can deploy applications across zones for redundancy.</p>
+    </div>
+
+    <!-- IAM -->
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🔐 Identity and Access Management (IAM)</h2>
+      <p class="text-sm">IAM in GCP controls who (users or service accounts) can do what (roles and permissions) on which resources. It supports:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Principals:</strong> Users, groups, and service accounts</li>
+        <li><strong>Roles:</strong> Predefined, custom, and basic (Viewer, Editor, Owner)</li>
+        <li><strong>Policies:</strong> Binding of principals to roles</li>
+      </ul>
+      <p class="text-sm">IAM provides fine-grained access control and is crucial for enforcing least-privilege security across your cloud resources.</p>
+    </div>
+  </section>
+</body>
+</html>
