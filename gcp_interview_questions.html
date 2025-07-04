@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCP Interview Questions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Top 50 GCP Interview Questions</h1>
+    <p class="text-gray-600">A curated list of commonly asked Google Cloud Platform interview questions and answers to help you prepare.</p>
+    <a href="gcp-dashboard-cards.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to GCP Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="space-y-4 text-sm">
+      <div><strong>1. What is GCP?</strong><br>Google Cloud Platform is a suite of cloud computing services provided by Google for building, deploying, and managing applications.</div>
+      <div><strong>2. List some core services in GCP.</strong><br>Compute Engine, App Engine, Cloud Functions, GKE, BigQuery, Cloud Storage, Pub/Sub, etc.</div>
+      <div><strong>3. What is a Project in GCP?</strong><br>A Project is a container for resources, settings, permissions, and billing details.</div>
+      <div><strong>4. Explain IAM in GCP.</strong><br>Identity and Access Management controls access by assigning roles to users and service accounts.</div>
+      <div><strong>5. What are service accounts?</strong><br>Non-human accounts used to authenticate apps and services with permissions.</div>
+      <div><strong>6. Difference between Compute Engine and App Engine?</strong><br>Compute Engine offers VMs; App Engine is a serverless PaaS for applications.</div>
+      <div><strong>7. What is Cloud Storage?</strong><br>Object-based storage for unstructured data with multiple storage classes.</div>
+      <div><strong>8. What is BigQuery?</strong><br>A fully managed, serverless data warehouse for fast SQL analytics.</div>
+      <div><strong>9. Explain VPC.</strong><br>A Virtual Private Cloud is an isolated network environment with subnets and firewall rules.</div>
+      <div><strong>10. What is Cloud Pub/Sub?</strong><br>A messaging service for asynchronous communication between systems.</div>
+      <div><strong>11. How does Cloud Build work?</strong><br>Executes build steps defined in a config file, integrates with source code repositories.</div>
+      <div><strong>12. What is Artifact Registry?</strong><br>Stores container images and other build artifacts securely.</div>
+      <div><strong>13. Difference between zonal and regional resources?</strong><br>Zonal are confined to a single zone; regional are replicated across multiple zones.</div>
+      <div><strong>14. What is Cloud Function?</strong><br>A lightweight, event-driven serverless compute service.</div>
+      <div><strong>15. Explain Dataflow.</strong><br>A managed Apache Beam service for stream and batch data processing.</div>
+      <div><strong>16. What is Cloud Run?</strong><br>Serverless platform to run containers triggered by HTTP requests or events.</div>
+      <div><strong>17. What is GKE?</strong><br>Managed Kubernetes engine for container orchestration.</div>
+      <div><strong>18. What is Preemptible VM?</strong><br>Low-cost VM that can be shut down at any time.</div>
+      <div><strong>19. Explain the Shared VPC concept.</strong><br>Allows multiple projects to use a common network from a host project.</div>
+      <div><strong>20. What is Cloud Spanner?</strong><br>Globally distributed relational database with high availability and consistency.</div>
+      <div><strong>21. How does Cloud Monitoring help?</strong><br>Tracks metrics, uptime, and provides dashboards for system observability.</div>
+      <div><strong>22. What is a Service Perimeter?</strong><br>Used in VPC Service Controls to define a secure boundary around services.</div>
+      <div><strong>23. What is a Stackdriver Logging?</strong><br>Collects logs from GCP services for monitoring and auditing.</div>
+      <div><strong>24. Difference between Cloud SQL and Firestore?</strong><br>Cloud SQL is relational; Firestore is NoSQL document-based.</div>
+      <div><strong>25. How does autoscaling work in Compute Engine?</strong><br>Automatically adds/removes VMs based on load or custom metrics.</div>
+      <div><strong>26. What is Identity-Aware Proxy (IAP)?</strong><br>Controls access to web applications based on IAM policies and identity.</div>
+      <div><strong>27. Can GCP connect to on-prem systems?</strong><br>Yes, via VPN, Interconnect, or Transfer Appliance.</div>
+      <div><strong>28. What is billing account in GCP?</strong><br>Centralized account used to pay for usage across multiple projects.</div>
+      <div><strong>29. What is CMEK?</strong><br>Customer-Managed Encryption Keys used to control encryption of GCP data.</div>
+      <div><strong>30. How are resources organized in GCP?</strong><br>Organization > Folder > Project > Resource hierarchy.</div>
+      <div><strong>31. What is Forseti?</strong><br>An open-source tool for auditing GCP security policies and detecting misconfigurations.</div>
+      <div><strong>32. Difference between regional and global load balancers?</strong><br>Regional balances within a region; global supports multi-region routing.</div>
+      <div><strong>33. What is coldline storage?</strong><br>A low-cost storage class for infrequently accessed data.</div>
+      <div><strong>34. What is gcloud CLI?</strong><br>Command-line tool for managing GCP services and resources.</div>
+      <div><strong>35. What is Cloud Shell?</strong><br>Web-based shell environment preconfigured with CLI tools for GCP.</div>
+      <div><strong>36. What is Cloud Armor?</strong><br>A WAF and DDoS protection service to secure applications.</div>
+      <div><strong>37. Explain use of Labels in GCP.</strong><br>Key-value pairs for organizing and filtering GCP resources.</div>
+      <div><strong>38. What is TPU?</strong><br>Tensor Processing Unit, a Google-developed chip optimized for ML workloads.</div>
+      <div><strong>39. How to secure API keys?</strong><br>Use Secret Manager or environment variables with IAM policies.</div>
+      <div><strong>40. Explain quotas and limits.</strong><br>Controls the maximum use of GCP resources to prevent misuse.</div>
+      <div><strong>41. What is Marketplace?</strong><br>Catalog of preconfigured VM and container apps for quick deployment.</div>
+      <div><strong>42. What are network tags?</strong><br>Used to apply firewall rules and routes to specific VM instances.</div>
+      <div><strong>43. What is Cloud Interconnect?</strong><br>Provides high-speed physical connections between on-prem and GCP.</div>
+      <div><strong>44. How to reduce BigQuery cost?</strong><br>Use partitions, clustering, avoid SELECT *, limit scanned data.</div>
+      <div><strong>45. What is Deployment Manager?</strong><br>Infrastructure-as-code service to automate resource provisioning.</div>
+      <div><strong>46. What is Cloud Endpoints?</strong><br>API gateway that helps manage and secure APIs.</div>
+      <div><strong>47. Difference between Cloud Tasks and Pub/Sub?</strong><br>Tasks for async task queues; Pub/Sub for pub-sub messaging.</div>
+      <div><strong>48. What is Cloud Identity?</strong><br>Identity management for users and devices, integrates with IAM.</div>
+      <div><strong>49. How to monitor billing costs?</strong><br>Use Budgets, Billing Reports, and Cost Table in Cloud Console.</div>
+      <div><strong>50. What is Anthos?</strong><br>A platform for managing GKE clusters and workloads across hybrid and multi-cloud environments.</div>
+    </div>
+  </section>
+</body>
+</html>
