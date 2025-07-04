@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teradata Administration & Security</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Teradata Administration & Security</h1>
+    <p class="text-gray-600">An overview of essential administrative tasks and access control mechanisms in Teradata.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <!-- User & Role Management -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">👤 User and Role Management</h2>
+      <p class="text-sm">Teradata supports multi-level security using users, roles, and profiles. Users can be assigned to roles to simplify privilege management. System administrators use the <code>CREATE USER</code>, <code>CREATE ROLE</code>, and <code>GRANT</code> statements to manage access.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">CREATE ROLE FinanceRole;
+GRANT SELECT, INSERT ON SalesDB TO FinanceRole;
+GRANT FinanceRole TO user1;</pre>
+    </div>
+
+    <!-- Access Rights -->
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">🔐 Access Rights</h2>
+      <p class="text-sm">Access rights define what users can do with database objects. Common privileges include:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></li>
+        <li><code>EXECUTE</code> (for procedures)</li>
+        <li><code>CREATE</code>, <code>DROP</code>, <code>ALTER</code></li>
+        <li><code>WITH GRANT OPTION</code> to pass privileges to others</li>
+      </ul>
+    </div>
+
+    <!-- Profiles -->
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">📋 Profiles</h2>
+      <p class="text-sm">Profiles are used to assign default settings such as spool space, password policies, and session limits to multiple users. This simplifies user administration and enforces consistency.</p>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">CREATE PROFILE AnalystProfile
+  AS SPOOL = 5000000
+     PASSWORD = (EXPIRY = 90);
+CREATE USER analyst1 FROM AnalystProfile;</pre>
+    </div>
+
+    <!-- Locking & Concurrency -->
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🔒 Locking and Concurrency Control</h2>
+      <p class="text-sm">Teradata uses automatic locking to ensure data consistency. Lock types include:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Read Lock:</strong> Allows others to read; prevents updates</li>
+        <li><strong>Write Lock:</strong> Prevents all other access</li>
+        <li><strong>Access Lock:</strong> Used for non-critical reads without blocking</li>
+      </ul>
+      <p class="text-sm mt-2">Use <code>SHOW LOCKS</code> or <code>DBQL</code> to diagnose lock contention.</p>
+    </div>
+
+    <!-- Auditing & Logging -->
+    <div class="border-l-4 border-purple-600 pl-4">
+      <h2 class="text-xl font-semibold">📑 Auditing and Query Logging</h2>
+      <p class="text-sm">The <strong>DBQL (Database Query Log)</strong> captures information about SQL requests, user activity, execution time, and more. This helps with tuning and auditing user behavior.</p>
+      <ul class="list-disc list-inside text-sm">
+        <li>Enable DBQL per user or globally</li>
+        <li>Capture query text, CPU usage, I/O usage</li>
+        <li>Analyze usage for optimization or auditing</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teradata Advanced Topics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Teradata Advanced Topics</h1>
+    <p class="text-gray-600">Explore high-level features and advanced functionalities in Teradata for complex scenarios and performance improvements.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <!-- Stored Procedures and Macros -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📦 Stored Procedures & Macros</h2>
+      <p class="text-sm">Stored Procedures are reusable blocks of SQL that include logic, variables, loops, and conditionals. They allow automation of multi-step operations and return outputs like cursors or status messages.</p>
+      <p class="text-sm">Macros are precompiled SQL commands that can be executed with different parameters. They are more lightweight but do not support procedural logic like loops or IF-ELSE conditions.</p>
+    </div>
+
+    <!-- Views vs Tables -->
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">🪟 Views vs Tables</h2>
+      <p class="text-sm">A View is a virtual table created using a SELECT query. It doesn’t store data but helps simplify complex joins and hides sensitive columns. Views rely on underlying tables, while Tables store data physically on disk and support indexing and primary keys.</p>
+    </div>
+
+    <!-- Analytical SQL Functions -->
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">📊 Advanced SQL Functions</h2>
+      <p class="text-sm">Teradata supports various window and aggregation functions such as:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><code>RANK()</code>, <code>DENSE_RANK()</code>, <code>ROW_NUMBER()</code></li>
+        <li><code>QUALIFY</code> clause to filter windowed results</li>
+        <li><code>COALESCE()</code> for null handling</li>
+        <li><code>LISTAGG()</code> for string aggregation</li>
+        <li><code>CASE WHEN</code> and conditional logic</li>
+      </ul>
+    </div>
+
+    <!-- Error Logging -->
+    <div class="border-l-4 border-red-600 pl-4">
+      <h2 class="text-xl font-semibold">❌ Error Handling</h2>
+      <p class="text-sm">Teradata utilities like FastLoad and MultiLoad generate error tables during the load process. Logs capture duplicate rows, constraint violations, and transformation errors. Use <code>SHOW TABLE</code> and diagnostic SQL to review error tables and resolve data issues.</p>
+    </div>
+
+    <!-- Soft Deletes -->
+    <div class="border-l-4 border-purple-600 pl-4">
+      <h2 class="text-xl font-semibold">🧾 Soft Deletes</h2>
+      <p class="text-sm">Instead of physically deleting records, soft deletes update a status column (e.g., <code>is_deleted = 'Y'</code>) to mark data as logically removed. This maintains history, aids recovery, and improves auditability. Be sure to filter soft-deleted rows in reports using WHERE clauses.</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teradata Core Concepts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Teradata Core Concepts</h1>
+    <p class="text-gray-600">Fundamental components of Teradata's architecture and core functionalities.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📐 Teradata Architecture</h2>
+      <p class="text-sm">Teradata is a massively parallel processing (MPP) RDBMS. Its architecture is based on shared-nothing systems where each unit of processing is independent. The core components include:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Parsing Engine (PE):</strong> Responsible for parsing queries, validating syntax, and generating execution plans.</li>
+        <li><strong>AMPs (Access Module Processors):</strong> Each AMP handles a portion of the data and executes SQL steps in parallel.</li>
+        <li><strong>BYNET:</strong> High-speed communication network that connects AMPs and PEs.</li>
+        <li><strong>Disk Storage:</strong> Each AMP has its own dedicated disk storage, enabling parallel I/O operations.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-green-500 pl-4">
+      <h2 class="text-xl font-semibold">🔑 Primary and Secondary Indexes</h2>
+      <p class="text-sm">Indexes determine how rows are distributed across AMPs:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>Primary Index (PI):</strong> Determines row distribution using a hash function. Unique PI ensures even data distribution.</li>
+        <li><strong>Secondary Index (SI):</strong> Provides alternate access paths but requires maintenance overhead.</li>
+        <li><strong>Partitioned Primary Index (PPI):</strong> Improves query performance by reducing the number of rows scanned.</li>
+      </ul>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">📊 Data Distribution and Skew</h2>
+      <p class="text-sm">Teradata uses a hashing algorithm on the Primary Index to distribute rows across AMPs. A good PI ensures even distribution. Poor choice of PI can cause <strong>data skew</strong>, where some AMPs hold more data, affecting performance. Use <code>Help Stats</code> or <code>DBQL</code> to analyze skew factor.</p>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">🧠 Teradata SQL Engine</h2>
+      <p class="text-sm">Teradata supports ANSI SQL with enhancements for scalability and performance. The SQL engine coordinates with PEs and AMPs to execute complex queries in parallel, efficiently using resources.</p>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">✅ Summary</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li>MPP architecture provides scalability and performance</li>
+        <li>Indexes and data distribution are key to optimization</li>
+        <li>Choose PI carefully to avoid data skew</li>
+        <li>BYNET ensures fast communication across nodes</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

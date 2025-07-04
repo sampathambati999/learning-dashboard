@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teradata Data Loading & Utility Tools</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Teradata Data Loading & Utility Tools</h1>
+    <p class="text-gray-600">Overview and usage of various utilities in Teradata used for high-speed data loading, updating, and exporting.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-8">
+    <!-- FastLoad -->
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">🚀 FastLoad</h2>
+      <p class="text-sm">FastLoad is designed for quickly loading large volumes of data into an empty Teradata table using parallel sessions. It performs a two-phase load: data acquisition into work tables, followed by application into the base table. FastLoad does not allow duplicate rows, and cannot be used with tables having secondary indexes or triggers.</p>
+    </div>
+
+    <!-- MultiLoad -->
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">📦 MultiLoad</h2>
+      <p class="text-sm">MultiLoad is used for inserting, updating, deleting, and upserting data into populated tables. It supports multiple DML operations and handles multiple input files. Unlike FastLoad, MultiLoad supports tables with secondary indexes, but it locks the target tables until completion, making it suitable for batch updates.</p>
+    </div>
+
+    <!-- TPump -->
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 TPump (Teradata Parallel Data Pump)</h2>
+      <p class="text-sm">TPump allows continuous, low-volume row-by-row updates to Teradata tables. It supports INSERT, UPDATE, DELETE, and UPSERT operations using minimal locking, making it ideal for near-real-time data feeds. TPump works well with trickle-feed loading scenarios.</p>
+    </div>
+
+    <!-- TPT -->
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🔧 Teradata Parallel Transporter (TPT)</h2>
+      <p class="text-sm">TPT is a unified, high-performance data integration tool that combines the features of FastLoad, MultiLoad, TPump, and Export into a single scripting interface. It supports parallel job execution, metadata-driven operations, and integration with external data sources using connectors. TPT is recommended for modern, scalable loading and extraction jobs.</p>
+    </div>
+
+    <!-- Export Utility -->
+    <div class="border-l-4 border-purple-600 pl-4">
+      <h2 class="text-xl font-semibold">📤 Teradata Export Utility</h2>
+      <p class="text-sm">Export is used to unload large volumes of data from Teradata tables to flat files. It operates in parallel using multiple AMPs and supports delimited and fixed-width formatting. The Export utility is useful for data archival, migration, or reporting purposes.</p>
+    </div>
+
+    <!-- Summary -->
+    <div class="border-l-4 border-indigo-600 pl-4">
+      <h2 class="text-xl font-semibold">✅ Choosing the Right Utility</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li><strong>FastLoad:</strong> Best for initial bulk loads into empty tables</li>
+        <li><strong>MultiLoad:</strong> Ideal for batch DML operations on existing data</li>
+        <li><strong>TPump:</strong> Use for continuous, small-volume updates</li>
+        <li><strong>TPT:</strong> Modern, unified utility for flexible and scalable operations</li>
+        <li><strong>Export:</strong> Use to extract large datasets to flat files</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

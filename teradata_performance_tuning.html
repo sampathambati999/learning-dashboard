@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teradata Performance Tuning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+  <header class="max-w-4xl mx-auto mb-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Teradata Performance Tuning</h1>
+    <p class="text-gray-600">Tips and techniques for optimizing queries and system performance in Teradata.</p>
+    <a href="index.html" class="text-indigo-500 hover:underline text-sm">&larr; Back to Dashboard</a>
+  </header>
+
+  <section class="max-w-4xl mx-auto space-y-6">
+    <div class="border-l-4 border-blue-500 pl-4">
+      <h2 class="text-xl font-semibold">📄 Understanding EXPLAIN Plan</h2>
+      <p class="text-sm">Always run an <code>EXPLAIN</code> statement before executing a complex query. It describes how Teradata will process the request, showing join strategy, row estimates, AMP involvement, and redistribution activity. Look for keywords like "all-AMPs" and "redistribution" that signal potential performance issues.</p>
+    </div>
+
+    <div class="border-l-4 border-green-600 pl-4">
+      <h2 class="text-xl font-semibold">📌 Collecting Statistics</h2>
+      <p class="text-sm">Statistics guide the optimizer's decision-making. Collect stats on:</p>
+      <ul class="list-disc list-inside text-sm">
+        <li>Join columns</li>
+        <li>WHERE clause columns</li>
+        <li>Primary Indexes</li>
+        <li>Partitioning columns</li>
+      </ul>
+      <pre class="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">COLLECT STATISTICS ON db.table COLUMN column_name;</pre>
+    </div>
+
+    <div class="border-l-4 border-yellow-500 pl-4">
+      <h2 class="text-xl font-semibold">⚖️ Choosing the Right Primary Index</h2>
+      <p class="text-sm">Pick a PI that distributes rows evenly and is frequently used in joins or filters. Avoid skewed or NULL-heavy columns.</p>
+    </div>
+
+    <div class="border-l-4 border-red-500 pl-4">
+      <h2 class="text-xl font-semibold">🔁 Avoiding Full Table Scans</h2>
+      <p class="text-sm">Use WHERE conditions on indexed columns to reduce scanned rows. Ensure stats are up-to-date so the optimizer avoids full table scans unnecessarily.</p>
+    </div>
+
+    <div class="border-l-4 border-purple-500 pl-4">
+      <h2 class="text-xl font-semibold">📌 Using Volatile and Global Temporary Tables</h2>
+      <p class="text-sm">Use <code>VOLATILE</code> and <code>GLOBAL TEMPORARY</code> tables to break complex logic into manageable, optimized steps. These tables reside in spool space and disappear after the session or transaction ends.</p>
+    </div>
+
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="text-xl font-semibold">🔍 Monitoring Skew</h2>
+      <p class="text-sm">Use <code>DBQL</code>, <code>HELP STATS</code>, or query logs to find skewed steps and AMP usage. A high skew factor leads to longer processing times.</p>
+    </div>
+
+    <div class="border-l-4 border-teal-500 pl-4">
+      <h2 class="text-xl font-semibold">✅ Best Practices</h2>
+      <ul class="list-disc list-inside text-sm">
+        <li>Use QUALIFY instead of subqueries for ranking</li>
+        <li>Avoid SELECT * in production</li>
+        <li>Limit use of derived tables and views in joins</li>
+        <li>Use proper indexes and collect statistics regularly</li>
+        <li>Break big joins into smaller steps with temp tables</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
